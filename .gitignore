@@ -43,6 +43,5 @@ pip-selfcheck.json
 *~
 # Heroku #
 ##########
-venv
 .env
 staticfiles
