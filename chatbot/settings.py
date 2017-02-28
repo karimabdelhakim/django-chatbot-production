@@ -28,10 +28,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 DEBUG = config('DEBUG', default=False, cast=bool)
-
 ALLOWED_HOSTS = []
 
-
+print(11,DEBUG)
 # Application definition
 
 INSTALLED_APPS = [
@@ -96,22 +95,23 @@ WSGI_APPLICATION = 'chatbot.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'chatbot',
-#         'USER': 'karim',
-#         'PASSWORD': 'karim22-8',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'chatbot',
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASS'),
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+else:    
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
 
 
 CHANNEL_LAYERS = {
