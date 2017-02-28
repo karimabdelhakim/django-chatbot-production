@@ -1,0 +1,47 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.db
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+# virtualenv folders/files #
+############################
+Scripts
+lib
+include
+local
+bin
+pip-selfcheck.json
+
+# django files #
+################
+# other #
+.DS_Store
+*~
+# Heroku #
+##########
+venv
+.env

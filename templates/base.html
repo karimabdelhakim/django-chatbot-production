@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>{% block title %}ChatBot{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  	<link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+  	<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+<body>
+	
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="{%url 'index' %}">Home</a></li>
+    {%if request.user.is_staff or request.user.is_superuser %}
+    <li><a href="{%url 'broadcast' %}">broadcast</a></li>
+    <li><a href="{%url 'jwt-test' %}">jwt test</a></li>
+    {%endif%}
+    {%if not request.user.is_authenticated%}
+    <li class="pull-right"><a href="{%url 'users:register'%}">Register</a></li>     
+    <li class="pull-right"><a href="{%url 'users:login'%}">Login</a></li>
+    {%else%}  
+    <li class="pull-right"><a href="{%url 'users:logout'%}">Logout</a></li> 
+    {%endif%}
+  </ol>
+</div>
+	<div class="section">
+    	<div class="container">
+      		{% block content %}{% endblock content %}
+    	</div>
+  	</div>  
+  	{% block afterbody %}{% endblock afterbody %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
