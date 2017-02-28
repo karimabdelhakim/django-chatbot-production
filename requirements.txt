@@ -13,6 +13,7 @@ django-crispy-forms==1.6.1
 djangorestframework==3.5.4
 djangorestframework-jwt==1.9.0
 gunicorn==19.6.0
+honcho==0.7.1
 incremental==16.10.1
 Markdown==2.6.8
 msgpack-python==0.4.8
