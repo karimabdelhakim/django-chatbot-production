@@ -7,6 +7,7 @@ Automat==0.5.0
 channels==1.0.3
 constantly==15.1.0
 daphne==1.0.3
+dj-database-url==0.4.2
 Django==1.9
 django-crispy-forms==1.6.1
 djangorestframework==3.5.4
@@ -19,8 +20,10 @@ packaging==16.8
 psycopg2==2.6.2
 PyJWT==1.4.2
 pyparsing==2.1.10
+python-decouple==3.0
 redis==2.10.5
 six==1.10.0
 Twisted==17.1.0
 txaio==2.6.1
+whitenoise==3.3.0
 zope.interface==4.3.3

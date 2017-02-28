@@ -12,18 +12,22 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import datetime
+import dj_database_url
+from decouple import config
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pyi8x7-2=p^6!!hajvvldi7_s=b&$pw@!mva^2%v#lm3kys=)3'
+#SECRET_KEY = 'pyi8x7-2=p^6!!hajvvldi7_s=b&$pw@!mva^2%v#lm3kys=)3'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,15 +97,20 @@ WSGI_APPLICATION = 'chatbot.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'chatbot',
+#         'USER': 'karim',
+#         'PASSWORD': 'karim22-8',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chatbot',
-        'USER': 'karim',
-        'PASSWORD': 'karim22-8',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -148,6 +158,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
@@ -164,10 +179,10 @@ STATICFILES_DIRS = [
 #you will change the path in production to the web service url
 #use this command to copy static files from static folder to static_cdn(web server)
 #python manage.py collectstatic
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_cdn")#one folder up from BASE_DIR
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_cdn")#one folder up from BASE_DIR
 
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
