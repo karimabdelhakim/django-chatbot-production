@@ -16,7 +16,7 @@ def index(request):
     #user and bot messages sent to the specific user
     chat_msgs_qs = ChatMessage.objects.filter(user=request.user).order_by('timestamp')
     #bot messages sent to all existing users
-    bot_msgs_qs = BotMsgToAll.objects.order_by('timestamp')
+    bot_msgs_qs = BotMsgToAll.objects.filter(timestamp__gt=request.user.date_joined).order_by('timestamp')
     #joining the two list querysets into one sorted list queryset.
 	#sorted by timestamp, can be sorted by -timestamp if 
 	#reverse=True argument is added after key like in the api view

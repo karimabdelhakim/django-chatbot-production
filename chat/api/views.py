@@ -38,7 +38,7 @@ class UserMessagesListAPIView(ListAPIView):
 		#user and bot messages sent to the specific user
 		chat_msgs_qs = ChatMessage.objects.filter(user=self.request.user).order_by('timestamp')
 		#bot messages sent to all existing users
-		bot_msgs_qs = BotMsgToAll.objects.order_by('timestamp')
+		bot_msgs_qs = BotMsgToAll.objects.filter(timestamp__gt=self.request.user.date_joined).order_by('timestamp')
 		#joining the two list querysets into one sorted list queryset
 		#sorted by -timestamp cause reverse is True
 		queryset_list = sorted(chain(chat_msgs_qs,bot_msgs_qs),key=attrgetter('timestamp'),reverse=True)

@@ -11,8 +11,7 @@ def chat_send_api(message):
     owner = "user"
     userId = message.content['userId']
     user = get_user_model().objects.get(pk=userId)
-    msg = message.content['message']
-    print(user.username,msg)     
+    msg = message.content['message']     
     # Save to model
     msg_obj = ChatMessage.objects.create(
         user = user,
@@ -32,7 +31,7 @@ def chat_send_api(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }    
-    print("final_msg",final_msg)
+    #print("final_msg",final_msg)
     # Broadcast to listening socket(send user message to the user himself)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 
@@ -77,7 +76,7 @@ def bot_send_api(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }  
-    print("final_msg",final_msg)
+    #print("final_msg",final_msg)
     # Broadcast to listening socket(send bot reply message to the user)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 

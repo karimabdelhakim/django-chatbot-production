@@ -34,7 +34,7 @@ def chat_send(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }    
-    print("final_msg",final_msg)
+    #print("final_msg",final_msg)
     # Broadcast to listening socket(send user message to the user himself)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 
@@ -78,7 +78,7 @@ def bot_send(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }  
-    print("final_msg",final_msg)
+    #print("final_msg",final_msg)
     # Broadcast to listening socket(send bot reply message to the user)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 
@@ -100,9 +100,11 @@ def ws_connect(message):
 
 # Connected to websocket.receive
 def ws_receive(message):
+    print("ws_receive")
     payload = json.loads(message['text'])
     payload['reply_channel'] = message.content['reply_channel']
-    print("ws_receive", message['text'],payload)
+    #print(message['text'],payload)
+
     # Stick the message onto the processing queue
     Channel("chat.receive").send(payload)
 

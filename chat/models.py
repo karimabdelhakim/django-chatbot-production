@@ -8,7 +8,7 @@ from channels import Group
 import json
 
 class ChatMessage(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL,default=1)
+	user = models.ForeignKey(settings.AUTH_USER_MODEL)
 	message = models.CharField(max_length=255)
 	owner = models.TextField(max_length=7)
 	timestamp = models.DateTimeField(auto_now_add=True)
@@ -19,7 +19,7 @@ class ChatMessage(models.Model):
 
 
 class BotMsgToAll(models.Model):
-	staff = models.ForeignKey(settings.AUTH_USER_MODEL,limit_choices_to={'is_staff': True},default=1)
+	staff = models.ForeignKey(settings.AUTH_USER_MODEL,limit_choices_to={'is_staff': True})
 	message = models.CharField(max_length=255)
 	owner = models.TextField(max_length=7, default='bot-all', editable=False)
 	timestamp = models.DateTimeField(auto_now_add=True)
