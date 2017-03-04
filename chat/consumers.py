@@ -57,7 +57,7 @@ def bot_send(message):
     msg = message.content['message']
     #bot logic
     msg = msg + "  ,bot reply"
-    time.sleep(1)
+    #time.sleep(1)
     #then
     # Save to model
     msg_obj = ChatMessage.objects.create(
