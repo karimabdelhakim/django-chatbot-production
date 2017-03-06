@@ -1,5 +1,6 @@
 import json
 import time
+from django import forms
 from channels import Channel,Group
 # from channels.sessions import channel_session
 from channels.auth import channel_session_user_from_http, channel_session_user
@@ -14,7 +15,9 @@ def chat_send(message):
     owner = "user"
     user = message.user #dont forget to check if user exist in DB 
     msg = message.content['message']
-    print(user.username,msg)     
+    field = forms.CharField()
+    if not (field.clean(msg)):
+        raise forms.ValidationError("Message can not be empty")     
     # Save to model
     msg_obj = ChatMessage.objects.create(
         user = user,

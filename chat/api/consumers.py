@@ -4,7 +4,7 @@ from channels import Channel,Group
 from django.contrib.auth import get_user_model
 from chat.models import ChatMessage
 from .jwt_decorators import jwt_request_parameter, jwt_message_text_field
-
+from django import forms
 
 def chat_send_api(message):
     print("chat_send_api")
@@ -12,6 +12,9 @@ def chat_send_api(message):
     userId = message.content['userId']
     user = get_user_model().objects.get(pk=userId)
     msg = message.content['message']     
+    field = forms.CharField()
+    if not (field.clean(msg)):
+        raise forms.ValidationError("Message can not be empty") 
     # Save to model
     msg_obj = ChatMessage.objects.create(
         user = user,
