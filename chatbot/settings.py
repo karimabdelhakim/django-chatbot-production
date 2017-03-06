@@ -209,8 +209,8 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-     'JWT_ALLOW_REFRESH' : True, #allow token refersh
-     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),#2 hours
-     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
-     'JWT_LEEWAY': 20,#seconds
+     'JWT_ALLOW_REFRESH' : False, #True #allow token refersh
+     'JWT_EXPIRATION_DELTA' : datetime.timedelta(days=1),
+     #'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+     #'JWT_LEEWAY': 20,#seconds
      }
