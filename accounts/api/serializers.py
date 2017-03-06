@@ -119,7 +119,7 @@ class UserLoginSerializer(ModelSerializer):
 		data["token"] = token
 		#data["issued_at_timestamp"] = payload["orig_iat"] #unix timestamp of the date token issued at
 		#data["issued_at_datetime"] = datetime.utcfromtimestamp(payload["orig_iat"]).strftime('%Y-%m-%d T %H:%M:%S Z')
-		exp_at = datetime.utcfromtimestamp(payload["exp"]).strftime('%Y-%m-%d T %H:%M:%S Z')
+		exp_at = datetime.utcfromtimestamp(payload["exp"]).strftime('%Y-%m-%dT%H:%M:%SZ')
 		data["expire_at_datetime"] = exp_at #orig_iat + token expiration time
 		#data["total_expirDate_days"] = total_exp_date.days
 		return data

@@ -14,7 +14,8 @@ def chat_send_api(message):
     msg = message.content['message']     
     field = forms.CharField()
     if not (field.clean(msg)):
-        raise forms.ValidationError("Message can not be empty") 
+        raise forms.ValidationError("Message can not be empty")
+    msg = field.clean(msg)     
     # Save to model
     msg_obj = ChatMessage.objects.create(
         user = user,
