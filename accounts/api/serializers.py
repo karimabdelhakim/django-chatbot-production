@@ -88,26 +88,32 @@ class UserLoginSerializer(ModelSerializer):
 		username = data.get("username",None)
 		password = data["password"]
 		if not email and not username:
-			raise ValidationError("A username or email is required to login")
-		user = User.objects.filter(
-				Q(email=email) |
-				Q(username=username)
-			).distinct()
-		user = user.exclude(email__isnull=True).exclude(email__iexact='')
-		if user.exists() and user.count() == 1:
-			user_obj = user.first()
-		else:
-			raise ValidationError("This username/email is not valid.")	
+			raise ValidationError(
+				{	
+					"username":"A username is required to login",
+					"email":"An email is required to login"
+				})
+		# only username or email is required to login	
+		if username:
+			user_qs = User.objects.filter(username=username)
+			if user_qs.exists() and user_qs.count() == 1:
+				user_obj = user_qs.first()
+			else:
+				raise ValidationError({"username":"This username is not valid."})
+		elif email:
+			user_qs = User.objects.filter(email=email)
+			if user_qs.exists() and user_qs.count() == 1:
+				user_obj = user_qs.first()
+			else:
+				raise ValidationError({"email":"This email is not valid."})			
+	
 		if user_obj:
 			if not user_obj.check_password(password):
-				raise ValidationError("Incorrect credentials please try again")
+				raise ValidationError({"password":"Incorrect credentials please try again"})
 		
-			#if user logged in with email only then return username also
-			if not username:
-				data["username"] = user_obj.username
-			#if user logged in with username only then return email also
-			if not email:
-				data["email"] = user_obj.email
+			#ensure the data is right
+			data["username"] = user_obj.username
+			data["email"] = user_obj.email
 
 		#handling token
 		jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER

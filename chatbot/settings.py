@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = []
 
-print(11,DEBUG)
+print("Debug = ",DEBUG)
 # Application definition
 
 INSTALLED_APPS = [
