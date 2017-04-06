@@ -17,6 +17,11 @@ class ChatMessage(models.Model):
 	def formatted_timestamp(self):
 		return self.timestamp.strftime('%b %-d %-I:%M %p')
 
+	@property
+	def formatted_timestamp_milliseconds(self):
+		seconds = self.timestamp.strftime('%s')	
+		millisec = int(seconds)*1000
+		return millisec
 
 class BotMsgToAll(models.Model):
 	staff = models.ForeignKey(settings.AUTH_USER_MODEL,limit_choices_to={'is_staff': True})
@@ -28,7 +33,11 @@ class BotMsgToAll(models.Model):
 	def formatted_timestamp(self):
 		return self.timestamp.strftime('%b %-d %-I:%M %p')
 
-
+	@property
+	def formatted_timestamp_milliseconds(self):
+		seconds = self.timestamp.strftime('%s')	
+		millisec = int(seconds)*1000
+		return millisec
 
 @receiver(post_save, sender=BotMsgToAll)
 def send_message(sender, instance, created, **kwargs):

@@ -30,7 +30,8 @@ def chat_send_api(message):
             "user":msg_obj.user.username,
             "msg": msg_obj.message,
             "owner": msg_obj.owner,
-            "timestamp":msg_obj.formatted_timestamp
+            "timestamp":msg_obj.formatted_timestamp,#formatted_timestamp
+            "formated_timestamp":msg_obj.formatted_timestamp_milliseconds#timestamp_millisec
         }
     else:
         final_msg = {
@@ -38,7 +39,7 @@ def chat_send_api(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }    
-    #print("final_msg",final_msg)
+    print("final_msg",final_msg)
     # Broadcast to listening socket(send user message to the user himself)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 
@@ -78,7 +79,8 @@ def bot_send_api(message):
             "user":msg_obj.user.username,
             "msg": msg_obj.message,
             "owner": msg_obj.owner,
-            "timestamp":msg_obj.formatted_timestamp
+            "timestamp":msg_obj.formatted_timestamp,#formatted_timestamp
+            "formated_timestamp":msg_obj.formatted_timestamp_milliseconds#timestamp_millisec
         }
     else:
         final_msg = {
