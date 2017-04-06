@@ -5,6 +5,9 @@ from django.contrib.auth import get_user_model
 from chat.models import ChatMessage
 from .jwt_decorators import jwt_request_parameter, jwt_message_text_field
 from django import forms
+####testing#####
+from botlogic.test import just_test2
+################
 
 def chat_send_api(message):
     print("chat_send_api")
@@ -58,7 +61,10 @@ def bot_send_api(message):
     user = get_user_model().objects.get(pk=userId)
     msg = message.content['message']
     #bot logic
-    msg = msg + "  ,bot reply"
+    ####testing#####
+    msg = just_test2.talk_to_lina(msg)
+    ################
+    #msg = msg + "  ,bot reply"
     #time.sleep(1)
     #then
     # Save to model

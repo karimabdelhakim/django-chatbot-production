@@ -68,7 +68,7 @@ def bot_send(message):
     ####testing#####
     msg = just_test2.talk_to_lina(msg)
     ################
-    msg = msg + "  ,bot reply"
+    #msg = msg + "  ,bot reply"
     #time.sleep(1)
     #then
     # Save to model
