@@ -7,6 +7,11 @@ from channels.auth import channel_session_user_from_http, channel_session_user
 
 from .models import ChatMessage
 
+####testing#####
+from botlogic.test import just_test2
+################
+
+
 # Connected to chat.receive channel
 # chat_send is chat.receive channel consumer
 @channel_session_user
@@ -60,6 +65,9 @@ def bot_send(message):
     user = message.user 
     msg = message.content['message']
     #bot logic
+    ####testing#####
+    msg = just_test2.talk_to_lina(msg)
+    ################
     msg = msg + "  ,bot reply"
     #time.sleep(1)
     #then
