@@ -61,12 +61,14 @@ def bot_send_api(message):
     userId = message.content['userId']
     user = get_user_model().objects.get(pk=userId)
     msg = message.content['message']
-    #bot logic
     ####testing#####
-    msg = just_test2.talk_to_lina(msg)
+    character = message.content['character']
     ################
-    #msg = msg + "  ,bot reply"
-    #time.sleep(1)
+    #bot logic
+    msg = just_test2.talk_to_lina(msg)
+    ####testing#####
+    msg += " , character: " + character
+    ################
     #then
     # Save to model
     msg_obj = ChatMessage.objects.create(
