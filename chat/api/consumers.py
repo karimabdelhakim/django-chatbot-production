@@ -47,7 +47,8 @@ def chat_send_api(message):
     payload = {
         'reply_channel': message.content['reply_channel'],
         'message': msg,
-        'userId': user.id
+        'userId': user.id,
+        'character': message.content['character']
     }
     Channel("bot-api.receive").send(payload)
 
