@@ -1,0 +1,93 @@
+Set an alarm at ,alarm,alarm
+Wake me up at ,alarm,alarm
+Wake me up in ,alarm,alarm
+alarm me on ,alarm,alarm
+would you alarm me on  ,alarm,alarm
+Show all alarms,show alarm,alarm
+change myalarm to,change alarm,alarm
+Turn off all alarms,alarm off all,alarm
+Cancel my  alarm,alarm off specific,alarm
+cancel all alarms,alarm off all,alarm
+Set a timer for ,Timer set,Timer
+Show timers,Timer show,Timer
+Show timer,Timer show,Timer
+stop timer,Timer stop,Timer
+start timer,Timer start,Timer
+Resume the timer,Timer Resume,Timer
+Reset the timer,Timer Reser,Timer
+Delete Timer,Timer Delete,Timer
+What's the time in  ?,Time Location,Time
+What time is it now,Time now,Time
+Can I ask you what is the time,Time now,Time
+"What is the time, please",Time now,Time
+Can you please tell me what is the time,Time now,Time
+Do you have the time?,Time now,Time
+Do you know what time it is?,Time now,Time
+"Can you tell me what time it is, please?",Time now,Time
+What day is ?,Date for a keyword,Date
+What day is it  ?,Date for a keyword,Date
+What's the date ?,Date Day now,Date
+what day is it ?,Date Day now,Date
+What is date? ,Date now,Date
+Set meeting on,Calendar,Calendar
+Schedule meeting on,Calendar,Calendar
+Schedule a meeting with  at,Calendar with ,Calendar
+Schedule a appointment with  at,Calendar with ,Calendar
+Schedule a call with  at,Calendar with ,Calendar
+Move my meeting,Calendarv Move,Calendar
+Reschedule  appointment,Calendarv Move,Calendar
+create an event on ,Calendar,Calendar
+Cancel my appointment,Calendarv Cancel,Calendar
+What's on my calendar for?,Calendar,Calendar
+What do I have scheduled for this?,Calendar,Calendar
+What's on my schedule for?,Calendar,Calendar
+What does my day look like?,Calendar,Calendar
+When is my next meeting?,Calendar,Calendar
+What do I have on?,Calendar,Calendar
+When am I meeting with ?,Calendar with ,Calendar
+Where is my meeting with ?,Calendar with ,Calendar
+Make an event called for.,Calendar called,Calendar
+Take a note,Note,Note
+Show me my notes,Note show,Note
+Show me notes from,Note show,Note
+Show me notes about ,Note show Keyword,Note
+Update my last note,Note Update,Note
+Update note,Note Update,Note
+Share a note with ,Note share,Note
+Set a reminder,Reminder,Reminder
+remind me ,Reminder,Reminder
+would you remind me to,Reminder,Reminder
+Remind me to call at  .,time-based reminder,Reminder
+Remind me to feed the dog when I get home,location-based reminder,Reminder
+Remember to thank for the present.,Reminder,Reminder
+Remind me to and wine when .,location-based reminder,Reminder
+Do I have any reminders ?,Reminder,Reminder
+Send an email to  ,send email,Email
+Email  and  ,send email,Email
+"send an email to  at work,",send email at work email,Email
+Read my unread emails,read email,Email
+Respond to this email,send (respond) email,Email
+Compose an email to  ,send email,Email
+read my email.,read email,Email
+send email to   about   and say  ,send email,Email
+compose email to   about   and say  ,send email,Email
+Check email,read email,Email
+Find emails about  .,Find Email,Email
+Do I have any new messages?,Find Email,Email
+Any new email from ?,Find Email entity and time,Email
+Show the email from    ,Find Email entity and time,Email
+Show new mail about  ,Find Email,Email
+Reply  ,send (respond) email with text,Email
+Call  ,call contact,call
+Call me an  ,call service,call
+Redial last number,redial,call
+Return missed call,redial,call
+Call back my last missed call,redial,call
+Get my call history,history,call
+Call on mobile,call contact,call
+Call at work,call contact,call
+Send a message to ,send message contact,message
+Send a message to  saying ,send message with text,message
+Send a message to on her mobile saying ,send message with text,message
+Text and saying ,send message with text,message
+Send a message to ,send message number,message

@@ -6,7 +6,7 @@ from chat.models import ChatMessage
 from .jwt_decorators import jwt_request_parameter, jwt_message_text_field
 from django import forms
 ####testing#####
-from botlogic.test import just_test2
+from botlogic.Lina.Lina import callBot
 ################
 
 def chat_send_api(message):
@@ -63,13 +63,10 @@ def bot_send_api(message):
     user = get_user_model().objects.get(pk=userId)
     msg = message.content['message']
     ####testing#####
-    character = message.content['character']
+    character = 0#message.content['character']
     ################
     #bot logic
-    msg = just_test2.talk_to_lina(msg)
-    ####testing#####
-    msg += " , character: " + character
-    ################
+    msg = callBot(msg,character)
     #then
     # Save to model
     msg_obj = ChatMessage.objects.create(

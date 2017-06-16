@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>fdf4e825-1991-47ab-a131-380ccca25ba4</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Lina.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Lina</Name>
+    <RootNamespace>Lina</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="filter.py" />
+    <Compile Include="Lina.py" />
+    <Compile Include="stat_parser\eval_parser.py" />
+    <Compile Include="stat_parser\learn.py" />
+    <Compile Include="stat_parser\parser.py" />
+    <Compile Include="stat_parser\paths.py" />
+    <Compile Include="stat_parser\pcfg.py" />
+    <Compile Include="stat_parser\tokenizer.py" />
+    <Compile Include="stat_parser\treebanks\extract.py" />
+    <Compile Include="stat_parser\treebanks\normalize.py" />
+    <Compile Include="stat_parser\treebanks\parse.py" />
+    <Compile Include="stat_parser\treebanks\__init__.py" />
+    <Compile Include="stat_parser\word_classes.py" />
+    <Compile Include="stat_parser\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Conversations\" />
+    <Folder Include="cursing\" />
+    <Folder Include="stat_parser\" />
+    <Folder Include="stat_parser\temp\" />
+    <Folder Include="stat_parser\treebanks\" />
+    <Folder Include="stat_parser\treebanks\PennTreebank\" />
+    <Folder Include="stat_parser\treebanks\QuestionBank\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Conversations\action_conversation.csv" />
+    <Content Include="Conversations\animation_conversation.csv" />
+    <Content Include="Conversations\comedy_conversation.csv" />
+    <Content Include="Conversations\crime_conversation.csv" />
+    <Content Include="Conversations\drama_conversation.csv" />
+    <Content Include="Conversations\fantasy_conversation.csv" />
+    <Content Include="Conversations\film-noir.csv_conversation.csv" />
+    <Content Include="Conversations\horror_conversation.csv" />
+    <Content Include="Conversations\romance_conversation.csv" />
+    <Content Include="Conversations\sci-fi_conversation.csv" />
+    <Content Include="Conversations\tfidf_matrix_train_crime.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_drama.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_fantasy.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_film-noir.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_horror.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_romance.pickle" />
+    <Content Include="Conversations\tfidf_matrix_train_sci-fi.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_crime.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_drama.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_fantasy.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_film-noir.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_horror.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_romance.pickle" />
+    <Content Include="Conversations\tfidf_vectorizer_sci-fi.pickle" />
+    <Content Include="Conversations\war_conversation.csv" />
+    <Content Include="cursing\curses.pickle" />
+    <Content Include="intents - Copy.csv" />
+    <Content Include="Lina_all.csv" />
+    <Content Include="stat_parser\.gitignore" />
+    <Content Include="stat_parser\learn.pyc" />
+    <Content Include="stat_parser\parser.pyc" />
+    <Content Include="stat_parser\paths.pyc" />
+    <Content Include="stat_parser\pcfg.pyc" />
+    <Content Include="stat_parser\temp\4000qs.json" />
+    <Content Include="stat_parser\temp\model.json" />
+    <Content Include="stat_parser\temp\model_treebank.json" />
+    <Content Include="stat_parser\temp\penn_4000qs.txt" />
+    <Content Include="stat_parser\temp\penn_treebank.json" />
+    <Content Include="stat_parser\temp\test.dat" />
+    <Content Include="stat_parser\temp\test.key" />
+    <Content Include="stat_parser\tokenizer.pyc" />
+    <Content Include="stat_parser\treebanks\extract.pyc" />
+    <Content Include="stat_parser\treebanks\normalize.pyc" />
+    <Content Include="stat_parser\treebanks\parse.pyc" />
+    <Content Include="stat_parser\treebanks\PennTreebank\combined_sentences.txt" />
+    <Content Include="stat_parser\treebanks\PennTreebank\license.txt" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0001.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0002.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0003.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0004.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0005.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0006.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0007.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0008.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0009.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0010.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0011.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0012.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0013.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0014.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0015.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0016.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0017.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0018.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0019.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0020.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0021.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0022.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0023.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0024.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0025.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0026.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0027.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0028.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0029.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0030.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0031.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0032.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0033.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0034.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0035.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0036.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0037.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0038.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0039.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0040.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0041.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0042.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0043.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0044.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0045.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0046.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0047.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0048.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0049.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0050.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0051.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0052.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0053.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0054.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0055.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0056.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0057.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0058.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0059.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0060.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0061.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0062.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0063.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0064.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0065.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0066.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0067.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0068.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0069.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0070.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0071.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0072.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0073.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0074.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0075.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0076.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0077.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0078.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0079.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0080.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0081.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0082.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0083.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0084.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0085.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0086.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0087.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0088.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0089.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0090.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0091.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0092.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0093.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0094.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0095.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0096.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0097.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0098.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0099.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0100.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0101.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0102.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0103.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0104.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0105.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0106.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0107.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0108.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0109.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0110.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0111.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0112.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0113.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0114.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0115.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0116.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0117.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0118.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0119.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0120.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0121.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0122.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0123.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0124.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0125.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0126.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0127.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0128.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0129.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0130.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0131.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0132.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0133.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0134.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0135.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0136.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0137.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0138.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0139.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0140.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0141.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0142.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0143.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0144.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0145.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0146.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0147.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0148.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0149.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0150.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0151.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0152.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0153.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0154.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0155.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0156.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0157.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0158.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0159.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0160.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0161.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0162.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0163.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0164.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0165.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0166.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0167.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0168.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0169.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0170.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0171.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0172.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0173.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0174.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0175.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0176.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0177.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0178.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0179.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0180.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0181.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0182.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0183.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0184.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0185.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0186.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0187.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0188.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0189.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0190.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0191.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0192.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0193.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0194.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0195.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0196.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0197.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0198.mrg" />
+    <Content Include="stat_parser\treebanks\PennTreebank\wsj_0199.mrg" />
+    <Content Include="stat_parser\treebanks\QuestionBank\4000qs.txt" />
+    <Content Include="stat_parser\treebanks\QuestionBank\license.txt" />
+    <Content Include="stat_parser\treebanks\__init__.pyc" />
+    <Content Include="stat_parser\word_classes.pyc" />
+    <Content Include="stat_parser\__init__.pyc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

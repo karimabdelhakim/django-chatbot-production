@@ -8,7 +8,7 @@ from channels.auth import channel_session_user_from_http, channel_session_user
 from .models import ChatMessage
 
 ####testing#####
-from botlogic.test import just_test2
+from botlogic.Lina.Lina import callBot
 ################
 
 
@@ -64,9 +64,12 @@ def bot_send(message):
     owner = "bot"
     user = message.user 
     msg = message.content['message']
+    ####testing#####
+    #character = message.content['character']
+    ################
     #bot logic
     ####testing#####
-    msg = just_test2.talk_to_lina(msg)
+    msg = callBot(msg,0)
     ################
     #msg = msg + "  ,bot reply"
     #time.sleep(1)
