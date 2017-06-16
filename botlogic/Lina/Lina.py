@@ -235,11 +235,13 @@ def parse(sentenace):
              answer=soup_super_page.findAll('Text')[0].text
         return True,answer
 
-    except:
+    except Exception as error:
+        print ("error1",error)
         try:
             print("not what do you know about egypt")
              #other special parses
             regex = reduce(lambda x, y: x + "|" + y, special_parses)
+            print ("regex",regex)
             pos_tree_output = tree_output_str.index(re.search(regex, tree_output_str).group(0))
             pos_var = len(tree_output_str.replace('-', '').split()) - len(
             tree_output_str[pos_tree_output:].replace('-', '').split())
@@ -259,6 +261,7 @@ def parse(sentenace):
                  answer=soup_super_page.findAll('Text')[0].text
             return True,answer
         except Exception as exception:
+             print ("error2",exception)   
              print (type(exception).__name__)
              print (exception.__class__.__name__)
              return False,""
