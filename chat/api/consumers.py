@@ -61,18 +61,10 @@ def bot_send_api(message):
     owner = "bot"
     userId = message.content['userId']
     user = get_user_model().objects.get(pk=userId)
-    msg = message.content['message']
-    field = forms.CharField()
-    if not (field.clean(msg)):
-        raise forms.ValidationError("Message can not be empty")
-    msg = field.clean(msg)   
-    ####testing#####
-    character = 0#message.content['character']
-    ################
+    msg = message.content['message']  
+    character = message.content['character']
     #bot logic
-    print msg
     msg = callBot(msg,character)
-    #msg = callBot("where is egypt",character)
     #then
     # Save to model
     msg_obj = ChatMessage.objects.create(

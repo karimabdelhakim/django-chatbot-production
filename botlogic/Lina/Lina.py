@@ -8,10 +8,10 @@ import os
 import timeit
 import pickle
 import random
-import duckduckgo
-########karim commented this########
+
+
 from stat_parser.parser import Parser, display_tree
-####################################
+
 # from nltk.chunk import ne_chunk
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
@@ -154,7 +154,6 @@ def traverse(parent, x):
                 # "======== Sentence ========="
                 # print "Sentence:", " ".join(node.leaves()) , " +  type " , node.label()
                 a = 6
-                print 1
             else:
                 element_type = node.label()
                 element_value = node.leaves()[0]
@@ -167,50 +166,50 @@ def traverse(parent, x):
                 # tree_output.append(node)
 
                 traverse(node, x)
-                print 2
         else:
             # tree_output.append(  node)
             tree_output.append(parent.label())
 
             # print "Word:", node
             a = 5
-            print 3
 
 
 def parse(sentence):
     while len(tree_output) > 0:
         tree_output.pop()
-    print ("tree_output in parse first",tree_output)
+
     parser = Parser()
     try:
         tree = parser.parse(sentence)
-        print ("tree",tree)
+        print tree
     except:
         return False, ""
 
     # display_tree(tree)
     print("parse succeeded")
-    print ("tree_output before loop",tree_output)
+
     for i in range(len(tree)):
         traverse(tree[i], 0)
 
     print("traverse succeeded")
     tree_output_str = ""
-    print ("tree_output",tree_output)
+
     for a in tree_output:
         tree_output_str += " - " + a
-    print  ("before special_parses",tree_output_str)
+    print  tree_output_str
     special_parses = [
         "WRB - JJ - NNS",  # how many Leopards
         "WRB - JJ - JJ",  # how many leopards
         "WRB - JJ - VBP - DT - NN",  # how big are the pyramids
         "WRB - JJ - VBZ - JJ",  # how old is obama
         "WRB - JJ - VBZ - NNP",  # how old is Obama
-        "WRB - JJ - NN - VBP - NNP - VBP",  # how much money do Bill have 
+        "WRB - JJ - NN - VBP - NNP - VBP",  # how much money do Bill have
+        "WRB - VBP - DT - NN",  # where are the pyramids
+        "WP - VBP - PRP - VB - IN - NN",  # what do you know about egypt
 
         "WP - VBD - DT - NN",  # who won the champions last week        #when was the tv first invented
         "WP - VBD - NN",  # who worked today
-
+        
         "WP - VBP - DT - NN",  # what are the pyramids
         "WP - VBZ - DT - NN - IN - NN",  # what is the capital of egypt
 
@@ -223,17 +222,21 @@ def parse(sentence):
     ]
 
     try:
-        regex = "WP - VBP - PRP - VB - IN - NN"  # what do you know about egypt
+        # other special parses
+        regex = reduce(lambda x, y: x + "|" + y, special_parses)
+        print tree_output_str
         pos_tree_output = tree_output_str.index(re.search(regex, tree_output_str).group(0))
         pos_var = len(tree_output_str.replace('-', '').split()) - len(
             tree_output_str[pos_tree_output:].replace('-', '').split())
+        print pos_var
+        print tree_output_str
         fact_question = ' '.join(sentence.split()[pos_var:])
-        print("it is in thee form of  what do you know about egypt")
 
-        base_address = "https://api.duckduckgo.com/?q=" + imp_list_array["Noun"][0] + "&format=xml"
+        print("it is a fact question")
+        base_address = "https://api.duckduckgo.com/?q=" + fact_question + "&format=xml"
 
         super_page = requests.get(base_address)
-        print("requests succeeded")
+        print("request succeeded")
 
         soup_super_page = BeautifulSoup(super_page.content, "xml")
         print("BeautifulSoup succeeded")
@@ -242,49 +245,11 @@ def parse(sentence):
         if (answer == ""):
             answer = soup_super_page.findAll('Text')[0].text
         return True, answer
-
-    except Exception as error:
-        print ("error1", error)
-        try:
-            print("not what do you know about egypt")
-            print ("sentence",sentence)
-            # other special parses
-            regex = reduce(lambda x, y: x + "|" + y, special_parses)
-            print ("regex", regex)
-            print ("re.search" ,re.search(regex, tree_output_str).group(0) )
-            print ("tree_output_str_before",tree_output_str)
-            pos_tree_output = tree_output_str.index(re.search(regex, tree_output_str).group(0))
-            print ("tree_output_str_after",tree_output_str)
-            print ("pos_tree_output",pos_tree_output)
-            pos_var = len(tree_output_str.replace('-', '').split()) - len(
-                tree_output_str[pos_tree_output:].replace('-', '').split())
-            print ("pos_var",pos_var)
-            print ("sentence.splitposvar",sentence.split()[pos_var:] )
-            print ("sentence.split()",sentence.split())
-            fact_question = ' '.join(sentence.split()[pos_var:])
-            #fact_question = sentence
-            print("it is a fact question")
-            print ("fact_question",fact_question)
-            base_address = "https://api.duckduckgo.com/?q=" + fact_question + "&format=xml"
-
-            super_page = requests.get(base_address)
-            print("request succeeded")
-
-            soup_super_page = BeautifulSoup(super_page.content, "xml")
-            print("BeautifulSoup succeeded")
-            print ("answer",soup_super_page)
-            answer = soup_super_page.findAll('Abstract')[0].text
-            if (answer == ""):
-                answer = soup_super_page.findAll('Text')[0].text
-            return True, answer
-        except Exception as exception:
-            print ("error2", exception)
-            print (type(exception).__name__)
-            print (exception.__class__.__name__)
-            return False, ""
-
-
-# -----------------------General DataSet   &   Movies Lines----------------#
+    except Exception as exception:
+        print ("error2", exception)
+        print (type(exception).__name__)
+        print (exception.__class__.__name__)
+        return False, ""  # -----------------------General DataSet   &   Movies Lines----------------#
 
 def talk_to_lina(test_set_sentance, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
     i = 0
@@ -440,7 +405,7 @@ def callBot(var, option):
             print "action : " + result[0]
             print ("ENTER CHARACTER:")
             print (
-            "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11")
+                "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11")
             # option = int(raw_input("enter option as number: ")   )
 
             if option == 0:
@@ -539,7 +504,7 @@ def callBot(var, option):
     tree_output = []
     imp_list_array["Noun"] = []
     tree_output_str = ""
-    return response.split('.')[0]+'.'
+    return response.split('.')[0] + '.'
 
 
 def get_relative_path(filename):
@@ -548,7 +513,6 @@ def get_relative_path(filename):
     return relative_path
 
 
-print ("callbot",callBot("where is my wallet",1))
 
 
     # ----------naive bayes classifier intents       ----------------
