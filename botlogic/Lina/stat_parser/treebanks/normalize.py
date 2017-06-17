@@ -3,6 +3,7 @@ from json import dumps
 from parse import parse_treebank
 from botlogic.Lina.stat_parser.word_classes import is_cap_word
 
+
 def chomsky_normal_form(tree):
     if not isinstance(tree, list):
         raise Exception("Rule should be a list")
