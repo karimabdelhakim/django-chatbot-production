@@ -172,11 +172,11 @@ def traverse(parent , x):
              a=5
 
 
-def parse(sentenace):
+def parse(sentence):
 
     parser = Parser()
     try:
-        tree = parser.parse(sentenace) 
+        tree = parser.parse(sentence)
     except:
          return False,""
 
@@ -219,8 +219,8 @@ def parse(sentenace):
         pos_tree_output = tree_output_str.index(re.search(regex, tree_output_str).group(0))
         pos_var = len(tree_output_str.replace('-', '').split()) - len(
         tree_output_str[pos_tree_output:].replace('-', '').split())
-        fact_question= ' '.join(var.split()[pos_var:])
-        print("it is in thee form of  what do you know about egypt")
+        fact_question= ' '.join(sentence.split()[pos_var:])
+        # print("it is in thee form of  what do you know about egypt")
 
         base_address = "http://api.duckduckgo.com/?q="+imp_list_array["Noun"][0]+"&format=xml"
     
@@ -240,12 +240,13 @@ def parse(sentenace):
         try:
             print("not what do you know about egypt")
              #other special parses
-            regex = reduce(lambda x, y: x + "|" + y, special_parses)
+            regex = reduce(lambda x, y: x + '|' + y, special_parses)
             print ("regex",regex)
+            print ("research",re.search(regex, tree_output_str).group(0))
             pos_tree_output = tree_output_str.index(re.search(regex, tree_output_str).group(0))
             pos_var = len(tree_output_str.replace('-', '').split()) - len(
             tree_output_str[pos_tree_output:].replace('-', '').split())
-            fact_question= ' '.join(var.split()[pos_var:])
+            fact_question= ' '.join(sentence.split()[pos_var:])
     
             print("it is a fact question")
             base_address = "http://api.duckduckgo.com/?q="+fact_question+"&format=xml"
@@ -254,8 +255,8 @@ def parse(sentenace):
             print("request succeded")
 
             soup_super_page = BeautifulSoup(super_page.content, "xml")
+            #print soup_super_page
             print("BeautifulSoup succeded")
-
             answer=soup_super_page.findAll('Abstract')[0].text
             if (answer==""):
                  answer=soup_super_page.findAll('Text')[0].text
@@ -468,11 +469,12 @@ def callBot(var,option):
             print
 
             print ("Lina :  " +  response)
-            # edit_option = raw_input("Do you need to edit the response of the question ?? y/n :")
-
-            # if(edit_option=="y") :
-            #       edit_real_time(option , line_id)
-            # print
+            return response
+            #edit_option = raw_input("Do you need to edit the response of the question ?? y/n :")
+            edit_option = 'n'
+            if(edit_option=="y") :
+                  edit_real_time(option , line_id)
+            print
 
 
     else:# can be an intent
@@ -499,10 +501,11 @@ def callBot(var,option):
     tree_output = []
     imp_list_array["Noun"]=[]
     tree_output_str = ""
-    return response
+    
     
 
 
+##########################
 
 def get_relative_path(filename):
     conversations_dir = os.path.join(dir,"Conversations")
