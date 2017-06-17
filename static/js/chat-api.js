@@ -36,7 +36,7 @@ $(function() {
             command: "send",
             message: $('#message').val(),
             token: token,
-            character:"no character"
+            character:4
         }
         chatsock.send(JSON.stringify(message));
         $("#message").val('').focus();
