@@ -15,6 +15,7 @@ Django==1.9
 django-crispy-forms==1.6.1
 djangorestframework==3.5.4
 djangorestframework-jwt==1.9.0
+duckduckgo2==0.242
 gunicorn==19.6.0
 honcho==0.7.1
 idna==2.5
