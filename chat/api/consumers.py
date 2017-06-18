@@ -64,7 +64,13 @@ def bot_send_api(message):
     msg = message.content['message']  
     character = message.content['character']
     #bot logic
-    msg = callBot(msg,character)
+    response_type,response =callBot(msg,character)
+    if(response_type=="message"):
+        msg = response
+        intent_data = None
+    elif(response_type=="intent"):
+        intent_data = response
+        msg = ""    
     #then
     # Save to model
     msg_obj = ChatMessage.objects.create(
@@ -78,7 +84,9 @@ def bot_send_api(message):
             "msg": msg_obj.message,
             "owner": msg_obj.owner,
             "timestamp":msg_obj.formatted_timestamp,#formatted_timestamp
-            "formated_timestamp":msg_obj.formatted_timestamp_milliseconds#timestamp_millisec
+            "formated_timestamp":msg_obj.formatted_timestamp_milliseconds,#timestamp_millisec
+            "type":response_type,
+            "intent_data":intent_data
         }
     else:
         final_msg = {
@@ -86,7 +94,7 @@ def bot_send_api(message):
             "msg": "sorry ,DB error",
             "owner": owner,    
         }  
-    #print("final_msg",final_msg)
+    print("final_msg",final_msg)
     # Broadcast to listening socket(send bot reply message to the user)
     message.reply_channel.send({"text": json.dumps(final_msg)})
 

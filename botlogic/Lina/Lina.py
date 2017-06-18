@@ -9,9 +9,9 @@ import timeit
 import pickle
 import random
 
-
+########karim commented this########
 from stat_parser.parser import Parser, display_tree
-
+####################################
 # from nltk.chunk import ne_chunk
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
@@ -32,10 +32,31 @@ dir = os.path.dirname(__file__)
 
 
 # -------------------------TF-IDF cosine similarity for intnents--------------------------------#
-def intents(intnent_test_sentence):
+def intents_test(sentence):
+    if sentence == "set_alarm":
+        return ("name", "set_alarm", "title", "", "hour", "10", "minute", "")
+    elif sentence == "view_last_alarm":
+        return ("name", "view_last_alarm")
+    elif sentence == "call_contact":
+        return ("name", "call_name", "contact_name", "amr")
+    elif sentence == "call_number":
+        return ("name", "call_number", "number", "01018777306")
+    elif sentence == "view_contact":
+        return ("name", "view_contact", "contact_name", "amr")
+    elif sentence == "send_email":
+        return ("name", "send_email", "email", "amr.m.ezzat@gmail.com", "subject", "hi", "text", "")
+    elif sentence == "set_event":
+        return (
+        "name", "set_event", "start_time", "2017:0:18:7:30", "end_time", "", "title", "hello", "description", "",
+        "location", "")
+    else:
+        return ("", "normal sentence")
+
+
+def intents(intent_test_sentence):
     intents_sentences = []
     intents_sentences.append("intent")  # just to adjuxt index
-    test_set = (intnent_test_sentence, "")
+    test_set = (intent_test_sentence, "")
     tfidf_vectorizer_intent_path = os.path.join(dir, 'tfidf_vectorizer_intent.pickle')
     tfidf_matrix_train_intent_path = os.path.join(dir, 'tfidf_matrix_train_intent.pickle')
     intents_copy_path = os.path.join(dir, "intents - Copy.csv")
@@ -124,7 +145,7 @@ def intents(intnent_test_sentence):
     cosine = np.delete(cosine, 0)
     max = cosine.max()
     if max == 0:
-        return "normal setance", "normal setance", "normal setance", "100% sure"
+        return "normal sentence", "normal sentence", "normal sentence", "100% sure"
     response_index = np.where(cosine == max)[0][0] + 1  # no offset at all +3
 
     j = 0
@@ -134,7 +155,7 @@ def intents(intnent_test_sentence):
             j += 1  # we begin with 1 not 0 &    j is initialized by 0
             if j == response_index:
                 if max < 0.7:
-                    return "normal setance", "normal setance", "normal setance", str(max)
+                    return "normal sentence", "normal sentence", "normal sentence", str(max)
                     # return row[1],row[2] ,"not sure" , str(max)
                 else:
                     return row[1], row[2], "sure", str(max)
@@ -148,30 +169,33 @@ imp_list_array = {'Noun': []}
 
 
 def traverse(parent, x):
-    for node in parent:
-        if type(node) is nltk.Tree:
-            if node.label() == 'ROOT':
-                # "======== Sentence ========="
-                # print "Sentence:", " ".join(node.leaves()) , " +  type " , node.label()
-                a = 6
+    try:
+        for node in parent:
+            if type(node) is nltk.Tree:
+                if node.label() == 'ROOT':
+                    # "======== Sentence ========="
+                    # print "Sentence:", " ".join(node.leaves()) , " +  type " , node.label()
+                    a = 6
+                else:
+                    element_type = node.label()
+                    element_value = node.leaves()[0]
+                    element_sentence = node.leaves()
+
+                    if str(element_type) == 'NN' or str(element_type) == 'NNS' or str(element_type) == 'NNP' or str(
+                            element_type) == 'NNPS':
+                        imp_list_array['Noun'].append(str(element_value))
+
+                    # tree_output.append(node)
+
+                    traverse(node, x)
             else:
-                element_type = node.label()
-                element_value = node.leaves()[0]
-                element_sentence = node.leaves()
+                # tree_output.append(  node)
+                tree_output.append(parent.label())
 
-                if str(element_type) == 'NN' or str(element_type) == 'NNS' or str(element_type) == 'NNP' or str(
-                        element_type) == 'NNPS':
-                    imp_list_array['Noun'].append(str(element_value))
-
-                # tree_output.append(node)
-
-                traverse(node, x)
-        else:
-            # tree_output.append(  node)
-            tree_output.append(parent.label())
-
-            # print "Word:", node
-            a = 5
+                # print "Word:", node
+                a = 5
+    except:
+        tree_output.append('NN')
 
 
 def parse(sentence):
@@ -209,7 +233,7 @@ def parse(sentence):
 
         "WP - VBD - DT - NN",  # who won the champions last week        #when was the tv first invented
         "WP - VBD - NN",  # who worked today
-        
+
         "WP - VBP - DT - NN",  # what are the pyramids
         "WP - VBZ - DT - NN - IN - NN",  # what is the capital of egypt
 
@@ -251,12 +275,13 @@ def parse(sentence):
         print (exception.__class__.__name__)
         return False, ""  # -----------------------General DataSet   &   Movies Lines----------------#
 
-def talk_to_lina(test_set_sentance, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
+
+def talk_to_lina(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
     i = 0
     sentences = []
 
-    # enter your test sentance 
-    test_set = (test_set_sentance, "")
+    # enter your test sentence 
+    test_set = (test_set_sentence, "")
 
     # 3ashan yzabt el indexes
     sentences.append(" No you.")
@@ -276,7 +301,7 @@ def talk_to_lina(test_set_sentance, csv_file_path, tfidf_vectorizer_pikle_path, 
         # ---------------to train------------------#
         start = timeit.default_timer()
 
-        # enter jabberwakky sentance
+        # enter jabberwakky sentence
         with open(csv_file_path, "r") as sentences_file:
             reader = csv.reader(sentences_file, delimiter=',')
             # reader.next()
@@ -358,8 +383,8 @@ def edit_real_time(dataset_number, LineID):
                     "Conversations/sci-fi_conversation.csv",
                     "Conversations/war_conversation.csv"]
     print
-    new_sentance = raw_input("Your edit to the previous Lina's response : ")
-    if filter.curse_no_marks(new_sentance):
+    new_sentence = raw_input("Your edit to the previous Lina's response : ")
+    if filter.curse_no_marks(new_sentence):
         try:
             f = open(dataset_path[dataset_number], 'r')
             reader = csv.reader(f)
@@ -369,10 +394,10 @@ def edit_real_time(dataset_number, LineID):
             if delimeter in mylist[LineID - 1][1]:
                 # discard old suggestion
                 answer_row = mylist[LineID - 1][1].split(delimeter)
-                mylist[LineID - 1][1] = answer_row[0] + delimeter + new_sentance
+                mylist[LineID - 1][1] = answer_row[0] + delimeter + new_sentence
 
             else:  # add new suggestion
-                mylist[LineID - 1][1] += delimeter + new_sentance
+                mylist[LineID - 1][1] += delimeter + new_sentence
 
             my_new_list = open(dataset_path[dataset_number], 'wb')
             csv_writer = csv.writer(my_new_list)
@@ -391,13 +416,13 @@ def edit_real_time(dataset_number, LineID):
 
 def callBot(var, option):
     conversations_dir = os.path.join(dir, "Conversations")
-    result = intents(var)
-
-    if (result[1] == "normal setance"):
+    result = intents_test(var)
+    response = ""
+    if (result[1] == "normal sentence"):
         fact_question = parse(var)  # [False]  
         if (fact_question[0]):
             print "Fact Question"
-            print fact_question[1].encode('utf-8')
+            # print fact_question[1].encode('utf-8')
             response = fact_question[1].encode('utf-8')
             print
 
@@ -472,39 +497,37 @@ def callBot(var, option):
 
             print
 
-            print ("Lina :  " + response)
+            # print ("Lina :  " + response)
             # edit_option = raw_input("Do you need to edit the response of the question ?? y/n :")
 
             # if(edit_option=="y") :
             #       edit_real_time(option , line_id)
             # print
+        return ("message", response.strip().split('.')[0] + '.')
+    else:
+        # print ("intent", result)
+        return ("intent", result)
 
-
-    else:  # can be an intent
-        # if(result[2]=="not sure"):
-        #    #    option = raw_input(random.choice(pre_offer_varaibles) + random.choice(offer_varaibles) + result[0] +" ? ")
-
-        #    #    if any(word in option for word in yes_variables):
-        #    #        print "action : "           +  result[0]
-        #    #        print "class : "            +  result[1]
-        #    #        print "certainty : "        +  result[2]
-        #    #        print "certainty level : "  +  result[3]
-        #    #        print 
-        #    #    else:
-        #    #        print "Lina : "    +  talk_to_lina(var)
-        #    #        print
-
-        # else:#sure intent
-        print "action : " + result[0]
-        print "class : " + result[1]
-        print "certainty : " + result[2]
-        print "certainty level : " + result[3]
-        print
-
-    tree_output = []
-    imp_list_array["Noun"] = []
-    tree_output_str = ""
-    return response.split('.')[0] + '.'
+        # else:  # can be an intent
+        #     # if(result[2]=="not sure"):
+        #     #    #    option = raw_input(random.choice(pre_offer_varaibles) + random.choice(offer_varaibles) + result[0] +" ? ")
+        #
+        #     #    #    if any(word in option for word in yes_variables):
+        #     #    #        print "action : "           +  result[0]
+        #     #    #        print "class : "            +  result[1]
+        #     #    #        print "certainty : "        +  result[2]
+        #     #    #        print "certainty level : "  +  result[3]
+        #     #    #        print
+        #     #    #    else:
+        #     #    #        print "Lina : "    +  talk_to_lina(var)
+        #     #    #        print
+        #
+        #     # else:#sure intent
+        #     print "action : " + result[0]
+        #     print "class : " + result[1]
+        #     print "certainty : " + result[2]
+        #     print "certainty level : " + result[3]
+        #     print
 
 
 def get_relative_path(filename):
@@ -521,7 +544,7 @@ def get_relative_path(filename):
     # from sklearn.naive_bayes import MultinomialNB
     # from sklearn.feature_extraction.text import CountVectorizer
 
-    # def intents(sentance):
+    # def intents(sentence):
     #    #--------------------to learn------------------------------#
     #    #intent = pandas.read_csv("intents - Copy.csv")
     #    #vectorizer = CountVectorizer()
@@ -546,7 +569,7 @@ def get_relative_path(filename):
     #    model = pickle.load(f)
     #    f.close()
 
-    #    test_feature = vectorizer.transform((sentance,));
+    #    test_feature = vectorizer.transform((sentence,));
     #    pred_prob = max(model.predict_proba(test_feature)[0])
     #    pred = model.predict(test_feature)[0]
 
