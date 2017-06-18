@@ -38,7 +38,7 @@ def intents_test(sentence):
     elif sentence == "view_last_alarm":
         return ("name", "view_last_alarm")
     elif sentence == "call_contact":
-        return ("name", "call_name", "contact_name", "amr")
+        return ("name", "call_contact", "contact_name", "amr")
     elif sentence == "call_number":
         return ("name", "call_number", "number", "01018777306")
     elif sentence == "view_contact":
