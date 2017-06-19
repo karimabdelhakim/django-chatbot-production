@@ -5,9 +5,21 @@ from django.contrib.auth import get_user_model
 from chat.models import ChatMessage
 from .jwt_decorators import jwt_request_parameter, jwt_message_text_field
 from django import forms
-####testing#####
 from botlogic.Lina.Lina import callBot
-################
+
+
+
+def chat_history_api(message):
+    print ("chat_history_api")
+    msg = message.content['message']
+    msg_id = message.content['msg_id']
+    field = forms.CharField()
+    if not (field.clean(msg)):
+        raise forms.ValidationError("Message can not be empty")
+    msg = field.clean(msg)
+    chatMsg_obj = ChatMessage.objects.get(pk=msg_id)
+    chatMsg_obj.message = msg
+    chatMsg_obj.save()
 
 def chat_send_api(message):
     print("chat_send_api")
@@ -68,6 +80,7 @@ def bot_send_api(message):
     if(response_type=="message"):
         msg = response
         intent_data = None
+        msg_id=""
     elif(response_type=="intent"):
         intent_data = response
         msg = ""    
@@ -78,6 +91,9 @@ def bot_send_api(message):
         message = msg,
         owner = owner
     )
+    if(response_type=="intent"):
+        msg_id = msg_obj.id
+
     if(msg_obj):
         final_msg = {
             "user":msg_obj.user.username,
@@ -86,7 +102,8 @@ def bot_send_api(message):
             "timestamp":msg_obj.formatted_timestamp,#formatted_timestamp
             "formated_timestamp":msg_obj.formatted_timestamp_milliseconds,#timestamp_millisec
             "type":response_type,
-            "intent_data":intent_data
+            "intent_data":intent_data,
+            "msg_id":msg_id
         }
     else:
         final_msg = {

@@ -1,5 +1,6 @@
 from channels import route
-from .consumers import (ws_connect_api, ws_receive_api, ws_disconnect_api, chat_send_api ,bot_send_api)
+from .consumers import (ws_connect_api, ws_receive_api, ws_disconnect_api, 
+    chat_send_api ,bot_send_api,chat_history_api)
 
 
 # There's no path matching on these routes; we just rely on the matching
@@ -26,5 +27,6 @@ custom_routing = [
     # route("chat.receive", chat_leave, command="^leave$"),
     # route("chat.receive", chat_send, command="^send$"),
     route("chat-api.receive", chat_send_api, command="^send$"),
+    route("chat-api.receive", chat_history_api, command="^history$"),
     route("bot-api.receive", bot_send_api),
 ]
