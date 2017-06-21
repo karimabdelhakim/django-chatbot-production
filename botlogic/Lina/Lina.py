@@ -34,21 +34,20 @@ dir = os.path.dirname(__file__)
 # -------------------------TF-IDF cosine similarity for intnents--------------------------------#
 def intents_test(sentence):
     if sentence == "set_alarm":
-        return ("name", "set_alarm", "title", "", "hour", "10", "minute", "0")
+        return (True, ("name", "set_alarm", "title", "", "hour", "10", "minute", "0"))
     elif sentence == "view_last_alarm":
-        return ("name", "view_last_alarm")
+        return (True, ("name", "view_last_alarm"))
     elif sentence == "call_contact":
-        return ("name", "call_contact", "contact_name", "amr")
+        return (False, ("name", "call_contact", "contact_name", "amr"))
     elif sentence == "call_number":
-        return ("name", "call_number", "number", "01018777306")
+        return (False, ("name", "call_number", "number", "01018777306"))
     elif sentence == "view_contact":
-        return ("name", "view_contact", "contact_name", "amr")
+        return (False, ("name", "view_contact", "contact_name", "amr"))
     elif sentence == "send_email":
-        return ("name", "send_email", "email", "amr.m.ezzat@gmail.com", "subject", "hi", "text", "")
+        return (False, ("name", "send_email", "email", "amr.m.ezzat@gmail.com", "subject", "hi", "text", ""))
     elif sentence == "set_event":
-        return (
-        "name", "set_event", "start_time", "2017:0:18:7:30", "end_time", "", "title", "hello", "description", "",
-        "location", "")
+        return (True, ("name", "set_event", "start_time", "2017:0:18:7:30", "end_time", "",
+                "title", "hello", "description", "", "location", ""))
     else:
         return ("", "normal sentence")
 
@@ -503,10 +502,10 @@ def callBot(var, option):
             # if(edit_option=="y") :
             #       edit_real_time(option , line_id)
             # print
-        return ("message", response.strip().split('.')[0] + '.')
+        return "message", True, response.strip().split('.')[0] + '.'
     else:
         # print ("intent", result)
-        return ("intent", result)
+        return ("intent",) + result
 
         # else:  # can be an intent
         #     # if(result[2]=="not sure"):
