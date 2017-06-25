@@ -1,12 +1,10 @@
 import json
-#import time
 from channels import Channel,Group
 from django.contrib.auth import get_user_model
 from chat.models import ChatMessage
 from .jwt_decorators import jwt_request_parameter, jwt_message_text_field
 from django import forms
 from botlogic.Lina.Lina import callBot
-from datetime import datetime
 
 def chat_history_api(message):
     print ("chat_history_api")
@@ -75,30 +73,26 @@ def bot_send_api(message):
     msg = message.content['message']  
     character = message.content['character']
     #bot logic
-    response_type,save_msg,response =callBot(msg,character)
+    response_type,response =callBot(msg,character)
     if(response_type=="message"):
         msg = response
         intent_data = None
         msg_id=""
-        msg_obj = ChatMessage.objects.create(
-            user = user,
-            message = msg,
-            owner = owner
-        )
+       
     elif(response_type=="intent"):
         intent_data = response
         msg = ""
-        if(save_msg):
-            msg_obj = ChatMessage.objects.create(
-                user = user,
-                message = msg,
-                owner = owner
-            )
-            msg_id = msg_obj.id
-        else:
-            datetime_formated,datetime_millisec = getDatetime()
-            msg_obj = ChatMessage(user = user,message = msg,owner = owner)
-            msg_id = ""   
+        
+           
+
+    msg_obj = ChatMessage.objects.create(
+        user = user,
+        message = msg,
+        owner = owner
+    )
+
+    if(response_type=="intent"):
+        msg_id = msg_obj.id
 
     if(msg_obj):
         final_msg = {
@@ -107,14 +101,11 @@ def bot_send_api(message):
                 "owner": msg_obj.owner,
                 "type":response_type,
                 "intent_data":intent_data,
-                "msg_id":msg_id
+                "msg_id":msg_id,
+                "timestamp":msg_obj.formatted_timestamp,
+                "formated_timestamp":msg_obj.formatted_timestamp_milliseconds
         }
-        if(save_msg):    
-            final_msg["timestamp"] = msg_obj.formatted_timestamp
-            final_msg["formated_timestamp"] = msg_obj.formatted_timestamp_milliseconds
-        else:
-            final_msg["timestamp"] = datetime_formated
-            final_msg["formated_timestamp"] = datetime_millisec
+        
     else:
         final_msg = {
             "user":user.username,
@@ -158,10 +149,3 @@ def ws_disconnect_api(message):
 
 
 
-#####not a consumer#####
-def getDatetime():
-    timestamp = datetime.now()
-    datetime_formated = timestamp.strftime('%b %-d %-I:%M %p')
-    datetime_millisec = int(timestamp.strftime('%s'))*1000
-    return datetime_formated,datetime_millisec     
-########################

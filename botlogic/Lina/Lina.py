@@ -17,6 +17,7 @@ from stat_parser.parser import Parser, display_tree
 # from nltk.tokenize import word_tokenize
 
 import nltk
+from extract_intents import extract_intents
 
 # _____Fact Questions Libraries_____
 import re
@@ -415,7 +416,7 @@ def edit_real_time(dataset_number, LineID):
 
 def callBot(var, option):
     conversations_dir = os.path.join(dir, "Conversations")
-    result = intents_test(var)
+    result = extract_intents(var)
     response = ""
     if (result[1] == "normal sentence"):
         fact_question = parse(var)  # [False]  
@@ -502,10 +503,10 @@ def callBot(var, option):
             # if(edit_option=="y") :
             #       edit_real_time(option , line_id)
             # print
-        return "message", True, response.strip().split('.')[0] + '.'
+        return "message", response.strip().split('.')[0] + '.'
     else:
         # print ("intent", result)
-        return ("intent",) + result
+        return result
 
         # else:  # can be an intent
         #     # if(result[2]=="not sure"):
