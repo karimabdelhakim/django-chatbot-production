@@ -241,7 +241,7 @@ def parse(sentence):
         "WRB - VBZ - NN",  # where is egypt
         "WP - VBZ - NNP",  # what is Egypt
         "WP - VBZ - JJ",  # what is egypt
-        "WRB - VBD - NNP",  # when did Bayern 
+        "WRB - VBD - NNP",  # when did Bayern
         "WP - VBZ - NN"  # what is indonesian
     ]
 
@@ -280,7 +280,7 @@ def talk_to_lina(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, 
     i = 0
     sentences = []
 
-    # enter your test sentence 
+    # enter your test sentence
     test_set = (test_set_sentence, "")
 
     # 3ashan yzabt el indexes
@@ -415,11 +415,10 @@ def edit_real_time(dataset_number, LineID):
 
 
 def callBot(var, option):
-    conversations_dir = os.path.join(dir, "Conversations")
     result = extract_intents(var)
     response = ""
     if (result[1] == "normal sentence"):
-        fact_question = parse(var)  # [False]  
+        fact_question = parse(var)  # [False]
         if (fact_question[0]):
             print "Fact Question"
             # print fact_question[1].encode('utf-8')
@@ -602,7 +601,7 @@ def get_relative_path(filename):
 
     #  return named_entities
 
-    # result_parse = parse(var)  
+    # result_parse = parse(var)
     # named_entities = get_named_entities(var)
     # if(result_parse[0] is True and  len(named_entities) is not 0):
     #    print ("search internet for " )
