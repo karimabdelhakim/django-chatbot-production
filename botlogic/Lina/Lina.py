@@ -33,25 +33,6 @@ dir = os.path.dirname(__file__)
 
 
 # -------------------------TF-IDF cosine similarity for intnents--------------------------------#
-def intents_test(sentence):
-    if sentence == "set_alarm":
-        return (True, ("name", "set_alarm", "title", "", "hour", "10", "minute", "0"))
-    elif sentence == "view_last_alarm":
-        return (True, ("name", "view_last_alarm"))
-    elif sentence == "call_contact":
-        return (False, ("name", "call_contact", "contact_name", "amr"))
-    elif sentence == "call_number":
-        return (False, ("name", "call_number", "number", "01018777306"))
-    elif sentence == "view_contact":
-        return (False, ("name", "view_contact", "contact_name", "amr"))
-    elif sentence == "send_email":
-        return (False, ("name", "send_email", "email", "amr.m.ezzat@gmail.com", "subject", "hi", "text", ""))
-    elif sentence == "set_event":
-        return (True, ("name", "set_event", "start_time", "2017:0:18:7:30", "end_time", "",
-                "title", "hello", "description", "", "location", ""))
-    else:
-        return ("", "normal sentence")
-
 
 def intents(intent_test_sentence):
     intents_sentences = []
@@ -502,147 +483,13 @@ def callBot(var, option):
             # if(edit_option=="y") :
             #       edit_real_time(option , line_id)
             # print
-        return "message", response.strip().split('.')[0] + '.'
+        return "message", response.capitalize().strip().split('.')[0] + '.'
     else:
         # print ("intent", result)
         return result
-
-        # else:  # can be an intent
-        #     # if(result[2]=="not sure"):
-        #     #    #    option = raw_input(random.choice(pre_offer_varaibles) + random.choice(offer_varaibles) + result[0] +" ? ")
-        #
-        #     #    #    if any(word in option for word in yes_variables):
-        #     #    #        print "action : "           +  result[0]
-        #     #    #        print "class : "            +  result[1]
-        #     #    #        print "certainty : "        +  result[2]
-        #     #    #        print "certainty level : "  +  result[3]
-        #     #    #        print
-        #     #    #    else:
-        #     #    #        print "Lina : "    +  talk_to_lina(var)
-        #     #    #        print
-        #
-        #     # else:#sure intent
-        #     print "action : " + result[0]
-        #     print "class : " + result[1]
-        #     print "certainty : " + result[2]
-        #     print "certainty level : " + result[3]
-        #     print
 
 
 def get_relative_path(filename):
     conversations_dir = os.path.join(dir, "Conversations")
     relative_path = os.path.join(conversations_dir, filename)
     return relative_path
-
-
-
-
-    # ----------naive bayes classifier intents       ----------------
-
-    # import pandas
-    # from sklearn.naive_bayes import MultinomialNB
-    # from sklearn.feature_extraction.text import CountVectorizer
-
-    # def intents(sentence):
-    #    #--------------------to learn------------------------------#
-    #    #intent = pandas.read_csv("intents - Copy.csv")
-    #    #vectorizer = CountVectorizer()
-    #    #features = vectorizer.fit_transform(intent.iloc[:,0])
-    #    #model = MultinomialNB()
-    #    #model.fit(features, intent.iloc[:,2])
-
-    #    #f = open('CountVectorizer.pickle', 'wb')
-    #    #pickle.dump(vectorizer, f)
-    #    #f.close()
-
-    #    #f = open('MultinomialNB.pickle', 'wb')
-    #    #pickle.dump(model, f)
-    #    #f.close()
-
-    #    #------------------ to use --------------------------------#
-    #    f = open('CountVectorizer.pickle', 'rb')
-    #    vectorizer = pickle.load(f)
-    #    f.close()
-
-    #    f = open('MultinomialNB.pickle', 'rb')
-    #    model = pickle.load(f)
-    #    f.close()
-
-    #    test_feature = vectorizer.transform((sentence,));
-    #    pred_prob = max(model.predict_proba(test_feature)[0])
-    #    pred = model.predict(test_feature)[0]
-
-    #    return pred, pred_prob
-
-    # while True:
-    #    var = raw_input("Talk to Lina: ")
-    #    result = intents(var)
-
-    #    if (result[1] > 0.5):#sure to be intent
-    #        print "Command : " +result[0], result[1]
-    #        print
-
-    #    else:
-    #        print "Lina : " +  talk_to_lina(var)
-    #        print
-
-
-    # ----------named entity      ----------------
-    # def get_named_entities(sentence):
-    #  ne_tree = ne_chunk(pos_tag(word_tokenize(sentence)))
-    #  named_entities=[]
-
-    #  for t in ne_tree:
-    #     try:
-    #         if t.label() is not None:
-    #             named_entities.append( {'Entty':t.label() , 'Name':t.leaves()[0][0] , 'Type' : t.leaves()[0][1] } )
-    #     except:
-    #       aaqq =5
-
-    #  return named_entities
-
-    # result_parse = parse(var)
-    # named_entities = get_named_entities(var)
-    # if(result_parse[0] is True and  len(named_entities) is not 0):
-    #    print ("search internet for " )
-    #    print named_entities
-    #    print
-    #    continue
-
-
-
-    # var = raw_input("Talk to Lina: ")
-    # print "Lina : " +  talk_to_lina(var)
-
-
-    # -------------Lina asks for clrification ----------------
-    # yes_variables= [
-    # 'yes'         ,
-    # 'yea'         ,
-    # 'OK'          ,
-    # 'okey-dokey'  ,
-    # 'by all means',
-    # 'affirmative' ,
-    # 'aye'         ,
-    # 'roger'       ,
-    # 'uh-huh'      ,
-    # 'right'       ,
-    # 'very well'   ,
-    # 'yup'         ,
-    # 'yuppers'     ,
-    # 'right on'    ,
-    # 'surely'      ,
-    # 'totally'     ,
-    # 'sure'        ,
-    # ]
-    # pre_offer_varaibles=[
-    # ' I\'m not quite sure I know what you mean.  ',
-    # ' I\'m not quite sure I follow you.',
-    # ' I don\'t quite see what you mean.',
-    # ' I\'m not sure I got your point.',
-    # ' Sorry, I didn\'t quite hear what you said ',
-    # ' Sorry, I didn\'t get your point.',
-    # ' I don\'t quite see what you\'re getting at. ']
-    # offer_varaibles=['would you like me to ',
-    # 'do you want me to ' ,
-    # 'did you mean to ']
