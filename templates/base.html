@@ -19,7 +19,7 @@
     <li><a href="{%url 'index' %}">Home</a></li>
     {%if request.user.is_staff or request.user.is_superuser %}
     <li><a href="{%url 'broadcast' %}">broadcast</a></li>
-    <li><a href="{%url 'jwt-test' %}">jwt test</a></li>
+    <li><a href="{%url 'jwt-test' %}?token=">jwt test</a></li>
     {%endif%}
     {%if not request.user.is_authenticated%}
     <li class="pull-right"><a href="{%url 'users:register'%}">Register</a></li>     
