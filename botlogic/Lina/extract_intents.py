@@ -552,11 +552,3 @@ def extract_intents(text):
 #       """
 #
 # print extract_intents(text)
-
-
-
-
-
-
-
-

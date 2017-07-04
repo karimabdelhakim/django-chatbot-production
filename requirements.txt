@@ -26,10 +26,13 @@ msgpack-python==0.4.8
 nltk==3.2.4
 numpy==1.12.1
 packaging==16.8
+pandas==0.20.2
 psycopg2==2.6.2
 PyJWT==1.4.2
 pyparsing==2.1.10
+python-dateutil==2.6.0
 python-decouple==3.0
+pytz==2017.2
 redis==2.10.5
 requests==2.18.1
 scikit-learn==0.18.1

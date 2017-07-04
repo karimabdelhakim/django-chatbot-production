@@ -1,0 +1,43 @@
+Input,Action
+most recent alarm,next_alarm
+show me next alarm,next_alarm
+what is the next alarm,next_alarm
+view next alarm,next_alarm
+most coming alarm,next_alarm
+where am I,location
+would you please open map,location
+launch map,location
+What time is it now,show_time
+Can I ask you what is the time,show_time
+"What is the time, please",show_time
+Can you please tell me what is the time,show_time
+Do you have the time?,show_time
+Do you know what time it is?,show_time
+"Can you tell me what time it is, please?",show_time
+What day is ?,show_date
+What day is it  ?,show_date
+What's the date ?,show_date
+what day is it ?,show_date
+What is date? ,show_date
+show me the date and time,show_date_time
+date and time,show_date_time
+what is the date and time,show_date_time
+what to watch in movie,suggest movie
+tell me what to watch,suggest movie
+suggest a movie,suggest movie
+what to watch in movie,suggest movie
+tell me what to watch,suggest movie
+suggest a movie,suggest movie
+recommend me a movie,suggest movie
+Can you tell me the weather ? ,Check Weather
+How is the weather today ? ,Check Weather
+Is it hot today ? ,Check Weather
+Is it cold today ? ,Check Weather
+Is it going to rain today ? ,Check Weather
+will it rain today ? ,Check Weather
+How is the humidity today ? ,Check Weather
+show me last note,last_saved_note
+last note,last_saved_note
+last saved note,last_saved_note
+show me all notes,show_all_notes
+preview all notes,show_all_notes

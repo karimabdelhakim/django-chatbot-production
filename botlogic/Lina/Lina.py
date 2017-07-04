@@ -9,15 +9,14 @@ import timeit
 import pickle
 import random
 
-########karim commented this########
 from stat_parser.parser import Parser, display_tree
-####################################
 # from nltk.chunk import ne_chunk
 # from nltk.tag import pos_tag
 # from nltk.tokenize import word_tokenize
 
 import nltk
 from extract_intents import extract_intents
+
 
 # _____Fact Questions Libraries_____
 import re
@@ -27,121 +26,14 @@ import requests
 # _____Curse Fiter_____
 import filter
 
+# ______Intent classifier Youssef_____
+import pandas
+import sklearn
+import string
+
 # -----------------------------------$$ Global Variables $$-------------------------------------#
 delimeter = "_+^$#*#$^+_"
 dir = os.path.dirname(__file__)
-
-
-# -------------------------TF-IDF cosine similarity for intnents--------------------------------#
-
-def intents(intent_test_sentence):
-    intents_sentences = []
-    intents_sentences.append("intent")  # just to adjuxt index
-    test_set = (intent_test_sentence, "")
-    tfidf_vectorizer_intent_path = os.path.join(dir, 'tfidf_vectorizer_intent.pickle')
-    tfidf_matrix_train_intent_path = os.path.join(dir, 'tfidf_matrix_train_intent.pickle')
-    intents_copy_path = os.path.join(dir, "intents - Copy.csv")
-
-    try:
-        # --------------to use----------------------#
-        f = open(tfidf_vectorizer_intent_path, 'rb')
-        tfidf_vectorizer = pickle.load(f)
-        f.close()
-
-        f = open(tfidf_matrix_train_intent_path, 'rb')
-        tfidf_matrix_train = pickle.load(f)
-        f.close()
-        # -----------------------------------------#
-    except:
-        # ---------------to train------------------#
-
-        ENGLISH_STOP_WORDS = frozenset([
-            "a", "about", "above", "across", "after", "afterwards", "again", "against",
-            "all", "almost", "alone", "along", "already", "also", "although", "always",
-            "am", "among", "amongst", "amoungst", "amount", "an", "and", "another",
-            "any", "anyhow", "anyone", "anything", "anyway", "anywhere", "are",
-            "around", "as", "at", "back", "be", "became", "because", "become",
-            "becomes", "becoming", "been", "before", "beforehand", "behind", "being",
-            "below", "beside", "besides", "between", "beyond", "bill", "both",
-            "bottom", "but", "by", "can", "cannot", "cant", "co", "con",
-            "could", "couldnt", "cry", "de", "describe", "detail", "do", "done",
-            "down", "due", "during", "each", "eg", "eight", "either", "eleven", "else",
-            "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone",
-            "everything", "everywhere", "except", "few", "fifteen", "fifty", "fill",
-            "find", "fire", "first", "five", "for", "former", "formerly", "forty",
-            "found", "four", "from", "front", "full", "further", "get", "give", "go",
-            "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter",
-            "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his",
-            "how", "however", "hundred", "i", "ie", "if", "in", "inc", "indeed",
-            "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter",
-            "latterly", "least", "less", "ltd", "made", "many", "may", "me",
-            "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly",
-            "move", "much", "must", "my", "myself", "name", "namely", "neither",
-            "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone",
-            "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on",
-            "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our",
-            "ours", "ourselves", "out", "over", "own", "part", "per", "perhaps",
-            "please", "put", "rather", "re", "same", "see", "seem", "seemed",
-            "seeming", "seems", "serious", "several", "she", "should", "show", "side",
-            "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone",
-            "something", "sometime", "sometimes", "somewhere", "still", "such",
-            "system", "take", "ten", "than", "that", "the", "their", "them",
-            "themselves", "then", "thence", "there", "thereafter", "thereby",
-            "therefore", "therein", "thereupon", "these", "they", "thick", "thin",
-            "third", "this", "those", "though", "three", "through", "throughout",
-            "thru", "thus", "to", "together", "too", "top", "toward", "towards",
-            "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us",
-            "very", "via", "was", "we", "well", "were", "what", "whatever", "when",
-            "whence", "whenever", "where", "whereafter", "whereas", "whereby",
-            "wherein", "whereupon", "wherever", "whether", "which", "while", "whither",
-            "who", "whoever", "whole", "whom", "whose", "why", "will", "with",
-            "within", "without", "would", "yet", "you", "your", "yours", "yourself",
-            "yourselves"])
-
-        i = 0
-        with open(intents_copy_path, "r") as sentences_file:
-            reader = csv.reader(sentences_file, delimiter=',')
-            for row in reader:
-                a = row[0]
-                intents_sentences.append(row[0])
-                i += 1
-
-        tfidf_vectorizer = TfidfVectorizer(min_df=1, ngram_range=(1, 2),
-                                           stop_words=ENGLISH_STOP_WORDS)  # stop_words='english'
-        tfidf_matrix_train = tfidf_vectorizer.fit_transform(
-            intents_sentences)  # finds the tfidf score with normalization
-
-        f = open(tfidf_vectorizer_intent_path, 'wb')
-        pickle.dump(tfidf_vectorizer, f)
-        f.close()
-
-        f = open(tfidf_matrix_train_intent_path, 'wb')
-        pickle.dump(tfidf_matrix_train, f)
-        f.close()
-        # ----------------------------------------#
-
-    tfidf_matrix_test = tfidf_vectorizer.transform(test_set)
-    cosine = cosine_similarity(tfidf_matrix_test, tfidf_matrix_train)
-
-    cosine = np.delete(cosine, 0)
-    max = cosine.max()
-    if max == 0:
-        return "normal sentence", "normal sentence", "normal sentence", "100% sure"
-    response_index = np.where(cosine == max)[0][0] + 1  # no offset at all +3
-
-    j = 0
-    with open(intents_copy_path, "r") as sentences_file:
-        reader = csv.reader(sentences_file, delimiter=',')
-        for row in reader:
-            j += 1  # we begin with 1 not 0 &    j is initialized by 0
-            if j == response_index:
-                if max < 0.7:
-                    return "normal sentence", "normal sentence", "normal sentence", str(max)
-                    # return row[1],row[2] ,"not sure" , str(max)
-                else:
-                    return row[1], row[2], "sure", str(max)
-                break
-
 
 # -------------------------Parse and see if it is for internet----------------------------------#
 
@@ -350,24 +242,29 @@ def talk_to_lina(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, 
 # -------------------------------------------------------------------------#
 
 # -----------------------Edit Module (RealTime Learn)----------------------#
-def edit_real_time(dataset_number, LineID):
+def edit_real_time(new_sentence, dataset_number, LineID):
     dataset_path = ["Lina_all.csv",
-                    "Conversations/action_conversation.csv",
-                    "Conversations/animation_conversation.csv",
-                    "Conversations/comedy_conversation.csv",
-                    "Conversations/crime_conversation.csv",
-                    "Conversations/drama_conversation.csv",
-                    "Conversations/fantasy_conversation.csv",
-                    "Conversations/film-noir.csv_conversation.csv",
-                    "Conversations/horror_conversation.csv",
-                    "Conversations/romance_conversation.csv",
-                    "Conversations/sci-fi_conversation.csv",
-                    "Conversations/war_conversation.csv"]
+                    "action_conversation.csv",
+                    "animation_conversation.csv",
+                    "comedy_conversation.csv",
+                    "crime_conversation.csv",
+                    "drama_conversation.csv",
+                    "fantasy_conversation.csv",
+                    "film-noir.csv_conversation.csv",
+                    "horror_conversation.csv",
+                    "romance_conversation.csv",
+                    "sci-fi_conversation.csv",
+                    "war_conversation.csv"]
     print
-    new_sentence = raw_input("Your edit to the previous Lina's response : ")
     if filter.curse_no_marks(new_sentence):
         try:
-            f = open(dataset_path[dataset_number], 'r')
+            ##relaive path
+            if (dataset_number == 0):
+                file_path = os.path.join(dir, dataset_path[dataset_number])
+            else:
+                file_path = get_relative_path(dataset_path[dataset_number])
+            ##end relative path
+            f = open(file_path, 'r')
             reader = csv.reader(f)
             mylist = list(reader)
             f.close()
@@ -380,16 +277,18 @@ def edit_real_time(dataset_number, LineID):
             else:  # add new suggestion
                 mylist[LineID - 1][1] += delimeter + new_sentence
 
-            my_new_list = open(dataset_path[dataset_number], 'wb')
+            my_new_list = open(file_path, 'wb')
             csv_writer = csv.writer(my_new_list)
             csv_writer.writerows(mylist)
             my_new_list.close()
             print ("thanks for your support")
             print
+            return "New reply:" + new_sentence
         except:
-            pass
+            return "Server failure couldn't edit reply, please try again"
     else:
         print ("contains swear word")
+        return "Couldn't use your message as it contains vulgar/abusive words"
 
 
 # -------------------------------------------------------------------------#
@@ -397,13 +296,15 @@ def edit_real_time(dataset_number, LineID):
 
 def callBot(var, option):
     result = extract_intents(var)
+
     response = ""
-    if (result[1] == "normal sentence"):
+    if (result[1] == "normal sentence"):  # not anwar intent
         fact_question = parse(var)  # [False]
+        line_id = -1
         if (fact_question[0]):
             print "Fact Question"
             # print fact_question[1].encode('utf-8')
-            response = fact_question[1].encode('utf-8')
+            response = fact_question[1].encode('utf-8').split('.')[0] + '.'
             print
 
         else:
@@ -412,7 +313,6 @@ def callBot(var, option):
             print (
                 "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11")
             # option = int(raw_input("enter option as number: ")   )
-
             if option == 0:
                 Lina_all_path = os.path.join(dir, "Lina_all.csv")
                 tfidf_vectorizer_april_path = os.path.join(dir, "tfidf_vectorizer_april.pickle")
@@ -477,16 +377,10 @@ def callBot(var, option):
 
             print
 
-            # print ("Lina :  " + response)
-            # edit_option = raw_input("Do you need to edit the response of the question ?? y/n :")
+            print ("Lina :  " + response)
 
-            # if(edit_option=="y") :
-            #       edit_real_time(option , line_id)
-            # print
-        return "message", response.capitalize().strip().split('.')[0] + '.'
-    else:
-        # print ("intent", result)
-        return result
+        return "message", (response.capitalize().strip(), option, line_id)
+    return result  # anwar intent
 
 
 def get_relative_path(filename):
