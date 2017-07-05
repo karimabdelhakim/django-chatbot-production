@@ -28,7 +28,7 @@ def index(request):
 
 @login_required
 def message_to_all(request):
-    if not request.user.is_staff or not request.user.is_superuser:
+    if not (request.user.is_staff or  request.user.is_superuser):
         raise PermissionDenied   
     form = MessageForm(request.POST or None)
     if form.is_valid() and request.user.is_staff:
