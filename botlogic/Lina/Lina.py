@@ -300,7 +300,7 @@ def callBot(var, option):
     response = ""
     if (result[1] == "normal sentence"):  # not anwar intent
         fact_question = parse(var)  # [False]
-        line_id = -1
+        line_id = None
         if (fact_question[0]):
             print "Fact Question"
             # print fact_question[1].encode('utf-8')

@@ -114,16 +114,22 @@ def bot_send_api(message):
     #bot logic
     response_type,response =callBot(msg,character)
     if(response_type=="message"):
-        msg = response[0]   
+        msg = response[0]
+        dataset_number = response[1]
+        line_id = response[2]
     elif(response_type=="intent"):
         msg = ""
+        dataset_number = None
+        line_id = None
         
            
 
     msg_obj = ChatMessage.objects.create(
         user = user,
         message = msg,
-        owner = owner
+        owner = owner,
+        lineId = line_id,
+        character = dataset_number
     )
 
 

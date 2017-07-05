@@ -18,9 +18,11 @@ from operator import attrgetter
 #for testing chating with jwt authentication 
 @login_required
 def index_api(request):#add /?token=token to the url and then chat
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise PermissionDenied   
-    return render(request, "api-index/index.html")
+    if  request.user.is_staff or  request.user.is_superuser:
+    	return render(request, "api-index/index.html")
+    else:	
+    	raise PermissionDenied
+    
 
 
 #list messages of specific user

@@ -2,7 +2,6 @@ import re
 
 ### These are the regex that we are going to use
 set_alarm_regex = r"([Ss]et\s+[Aa]larm\s+([\D ]*)((\d{1,2}):?(\d{0,2}))?)"
-view_next_alarm_regex = r"[Vv]iew\s+[Nn]ext\s+[Aa]larm"
 
 call_number_regex = r"([Cc]all\s+\+?([0-9\s-]){3,})"
 view_contact_regex = r"([Vv]iew\s+contact\s+([A-Z0-9]\w*[\s\.]?)+)"
@@ -15,20 +14,12 @@ set_event_regex = r"([Ss]et\s+[Ee]vent\s+(\d{4}:\d{1,2}:\d{1,2}:?\d{0,2}:?\d{0,2
 message_contact_regex = r"([Ss]end\s+[Mm]essage\s+[Tt]o\s+(([A-Z0-9]\w*[\s\.]?)+)(\[.*\]))"
 message_number_regex = r"([Ss]end\s+[Mm]essage\s+[Tt]o\s+\+?([0-9\s-]{3,})\s?(\[.*\]))"
 
-show_date_regex = [r"[Ss]how\s+[Dd]ate"]
-show_time_regex = [r"[Ss]how\s+[Tt]ime"]
-show_date_time_regex = [r"[Ss]how\s+[Dd]ate\s+[Tt]ime"]
-
 start_timer_regex = r"([Ss]tart\s+(\d{1,2}):?(\d{0,2})\s+[Tt]imer)"
 
 save_note_regex = r"([Ss]ave\s+[Nn]ote\s+(\[[\w ,_]*\])\s*(\[[\w ,_]*\])?)"
 show_note_regex = r"([Ss]how\s+(.*)\s+[Nn]ote)"
 edit_note_regex = r"([Ee]dit\s+[Nn]ote\s+(\[.*\])\s+(\[.*\]))"
-remove_note_regex = r"([Rr]emove\s+[Nn]ote\s+(\[.*\]))"
-last_saved_note_regex = [r"last_saved_note", \
-                         r"([Ss]how\s+[Mm]e|[Ss]how)?\s*[Ll]ast\s+([Ss]aved|[Cc]reated)?\s*[Nn]ote"]
-show_all_notes_regex = [r"show_all_notes", \
-                        r"([Ss]how\s+[Mm]e|[Ss]how)?\s*[Aa]ll\s+([Cc]reated)?\s*[Nn]otes"]
+delete_note_regex = r"([Dd]elete\s+[Nn]ote\s+(\[.*\]))"
 
 
 ###
@@ -71,30 +62,6 @@ def get_set_alarm(text):
             output.append(("set_alarm", "title(\'" + trim(match[1]) + "\')", \
                            "hour(\'" + default(match[3], 0) + "\')", \
                            "minute(\'" + default(match[4], 0) + "\')"))
-
-    return output
-
-
-########################## view_next_alarm ##########################
-def remove_white_space(text):
-    white_space = "\t\n "
-    output = ""
-    if text == "":
-        return text
-
-    for ch in text:
-        if ch in white_space:
-            pass
-        else:
-            output += ch
-    return output
-
-
-def get_view_next_alarm(text):
-    match = re.search(view_next_alarm_regex, text)
-    output = []
-    if match:
-        output.append(("view_next_alarm",))
 
     return output
 
@@ -160,6 +127,19 @@ def get_view_contact(text):
 ########################## call_contact ##########################
 # text = "please, call Mohamed Anwar and Call Mo7amed Gamal.\
 # Don't forget to call M.Mostafa Elafasay and call Amr 3ezzat"
+def delete_white_space(text):
+    white_space = "\t\n "
+    output = ""
+    if text == "":
+        return text
+
+    for ch in text:
+        if ch in white_space:
+            pass
+        else:
+            output += ch
+    return output
+
 
 def get_call_contact(text):
     match = re.search(call_contact_regex, text)
@@ -167,7 +147,7 @@ def get_call_contact(text):
     if match:
         matches = re.findall(call_contact_regex, text)
         for match in matches:
-            temp = remove_white_space(match[0][5:])
+            temp = delete_white_space(match[0][5:])
             if trim(temp).isdigit():
                 pass
             else:
@@ -219,7 +199,7 @@ def get_set_event(text):
                            "start_time(\'" + match[1] + "\')", \
                            "end_time(\'" + default(match[2], 0) + "\')", \
                            "title(\'" + match[3][1:-1] + "\')", \
-                           "description(\'" + match[4][1:-1] + "\')", \
+                           "text(\'" + match[4][1:-1] + "\')", \
                            "location(\'" + match[5][1:-1] + "\')"))
     another_regex = r"([Ss]et\s+[Ee]vent\s+(\d{0,2}:\d{0,2})\s*(\d{0,2}:\d{0,2})?\s+(\[[\w ,_]*\])\s*(\[[\w ,_]*\])?\s*(\[[\w ,_]*\])?)"
     match = re.search(another_regex, text)
@@ -230,7 +210,7 @@ def get_set_event(text):
                            "start_time(\'" + match[1] + "\')", \
                            "end_time(\'" + default(match[2], 0) + "\')", \
                            "title(\'" + match[3][1:-1] + "\')", \
-                           "description(\'" + match[4][1:-1] + "\')", \
+                           "text(\'" + match[4][1:-1] + "\')", \
                            "location(\'" + match[5][1:-1] + "\')"))
 
     return output
@@ -250,7 +230,7 @@ def get_message_contact(text):
     if match:
         matches = re.findall(message_contact_regex, text)
         for match in matches:
-            temp = remove_white_space(trim(match[1]))
+            temp = delete_white_space(trim(match[1]))
             if trim(temp).isdigit():
                 pass
             else:
@@ -282,56 +262,6 @@ def get_message_number(text):
                            "message(\'" + match[2][1:-1] + "\')"))
 
     return output
-
-
-########################## show_date ##########################
-show_date_regex += [r"show_date", \
-                    r"what\s+is\s+the\s+date\,?\s*today", \
-                    r"what\s+is\s+today's\s+date", \
-                    r"what\s+day\s+of\s+the\s+week\s+is\s+it", \
-                    r"what\s+date\s+is\s+today", \
-                    r"what\s+day\s+of\s+the\s+month\s+is\s+it", \
-                    r"^date[\s\?\!\.]*$",
-                    r"today's\s+date"]
-
-
-def get_show_date(text):
-    for x in show_date_regex:
-        if re.search(x, text, flags=re.IGNORECASE | re.MULTILINE):
-            return [("show_date",)]
-    return []
-
-
-########################## show_time ##########################
-show_time_regex += [r"show_time", \
-                    r"what\s+is\s+the\s+time", \
-                    r"what\s+time\s+is\s+it", \
-                    r"tell\s+me\s+the\s+time", \
-                    r"^time[\s\?\!\.]*$"]
-
-
-def get_show_time(text):
-    for x in show_time_regex:
-        if re.search(x, text, flags=re.IGNORECASE | re.MULTILINE):
-            return [("show_time",)]
-    return []
-
-
-########################## show_date_time ##########################
-show_date_time_regex += [r"show_date_time", \
-                         r"what\s+is\s+the\s+time\s+and\s+date\,?\s*now", \
-                         r"time\s+and\s+date", \
-                         r"what\s+date\s+and\s+time\s+\s+is\s+it\,?\s*now", \
-                         r"date\s+and\s+time", \
-                         r"what\s+is\s+today\s+and\s+what\s+time\s+is\s+it", \
-                         r"today\s+and\s+time"]
-
-
-def get_show_date_time(text):
-    for x in show_date_time_regex:
-        if re.search(x, text, flags=re.IGNORECASE | re.MULTILINE):
-            return [("show_date_time",)]
-    return []
 
 
 ########################## start_timer ##########################
@@ -371,7 +301,7 @@ def get_save_note(text):
         matches = re.findall(save_note_regex, text)
         for match in matches:
             output.append(("save_note", "title(\'" + match[1][1:-1] + "\')", \
-                           "description(\'" + match[2][1:-1] + "\')"))
+                           "text(\'" + match[2][1:-1] + "\')"))
 
     return output
 
@@ -382,6 +312,7 @@ def get_save_note(text):
 #       show Morning Routine note
 #       and don't forget to show note.
 #       and don't forget to show all note.
+#       Show       Note    [Hello]
 #       """
 
 def get_show_note(text):
@@ -394,6 +325,14 @@ def get_show_note(text):
                 pass
             else:
                 output.append(("show_note", "title(\'" + match[1] + "\')"))
+
+    another_regex = r"([Ss]how\s+[Nn]ote\s+(\[[\w ,_]*\]))"
+    match = re.search(another_regex, text)
+    if match:
+        matches = re.findall(another_regex, text)
+        for match in matches:
+            output.append(("show_note", "title(\'" + match[1][1:-1] + "\')"))
+
     return output
 
 
@@ -411,41 +350,36 @@ def get_edit_note(text):
         matches = re.findall(edit_note_regex, text)
         for match in matches:
             output.append(("edit_note", "title(\'" + match[1][1:-1] + "\')", \
-                           "description(\'" + match[2][1:-1] + "\')"))
+                           "text(\'" + match[2][1:-1] + "\')"))
 
     return output
 
 
-########################## remove_note ##########################
+########################## delete_note ##########################
 # text = """
-#       try to remove note [job offer]
-#       remove note
+#       try to delete note [job offer]
+#       delete hey, YO Note
+#       delete note
 #       """
 
-def get_remove_note(text):
-    match = re.search(remove_note_regex, text)
+def get_delete_note(text):
+    match = re.search(delete_note_regex, text)
     output = []
     if match:
-        matches = re.findall(remove_note_regex, text)
+        matches = re.findall(delete_note_regex, text)
         for match in matches:
-            output.append(("remove_note", "title(\'" + match[1][1:-1] + "\')"))
+            output.append(("delete_note", "title(\'" + match[1][1:-1] + "\')"))
+
+    another_regex = show_note_regex = r"([Dd]elete\s+(.*)\s+[Nn]ote)"
+    match = re.search(another_regex, text)
+    if match:
+        matches = re.findall(another_regex, text)
+        for match in matches:
+            output.append(("delete_note", "title(\'" + match[1] + "\')"))
     return output
 
 
-########################## last-saved_note ##########################
-def get_last_saved_note(text):
-    for x in last_saved_note_regex:
-        if re.search(x, text, flags=re.IGNORECASE | re.MULTILINE):
-            return [("last_saved_note",)]
-    return []
-
-
-########################## show-all_notes ##########################
-def get_show_all_notes(text):
-    for x in show_all_notes_regex:
-        if re.search(x, text, flags=re.IGNORECASE | re.MULTILINE):
-            return [("show_all_notes",)]
-    return []
+# print get_delete_note(text), "\n\n\n"
 
 
 ########################## new_send ##########################
@@ -464,7 +398,7 @@ def get_new_send(text):
         matches = re.findall(new_send_regex, text)
         for match in matches:
 
-            temp = remove_white_space(trim(match[2]))
+            temp = delete_white_space(trim(match[2]))
             if trim(temp).isdigit() or match[1].lower() == "message":
                 pass
             else:
@@ -507,7 +441,6 @@ def get_new_send(text):
 def extract_intents(text):
     whole_outputs = []
     whole_outputs.append(get_set_alarm(text))
-    whole_outputs.append(get_view_next_alarm(text))
 
     whole_outputs.append(get_call_number(text))
     whole_outputs.append(get_view_contact(text))
@@ -521,18 +454,12 @@ def extract_intents(text):
     whole_outputs.append(get_message_contact(text))
     whole_outputs.append(get_message_number(text))
 
-    whole_outputs.append(get_show_date(text))
-    whole_outputs.append(get_show_time(text))
-    whole_outputs.append(get_show_date_time(text))
-
     whole_outputs.append(get_start_timer(text))
 
     whole_outputs.append(get_save_note(text))
     whole_outputs.append(get_edit_note(text))
     whole_outputs.append(get_show_note(text))
-    whole_outputs.append(get_remove_note(text))
-    whole_outputs.append(get_last_saved_note(text))
-    whole_outputs.append(get_show_all_notes(text))
+    whole_outputs.append(get_delete_note(text))
 
     if len(tuple(sum(whole_outputs, []))) == 0:
         return ("", "normal sentence")
@@ -549,6 +476,15 @@ def extract_intents(text):
 #       And finally, show all notes out there :) Set alarm 10:00
 #       set event 2017:8:14:17:32        [title] [description] [location]
 #       show all notes. And in the last, Send i've done with you to ismail@gmail.com, it's necessary!!
+#       ANd delete kza note
 #       """
 #
 # print extract_intents(text)
+
+
+
+
+
+
+
+

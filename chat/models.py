@@ -11,6 +11,8 @@ class ChatMessage(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL)
 	message = models.CharField(max_length=255)
 	owner = models.TextField(max_length=7)
+	lineId = models.PositiveIntegerField(blank=True, null=True,default=None)
+	character = models.PositiveSmallIntegerField(blank=True, null=True, default=None)
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	@property
