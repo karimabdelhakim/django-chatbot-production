@@ -20,7 +20,7 @@ class UserMessagesSerializer(ModelSerializer):
 
 	class Meta:
 		model = ChatMessage
-		fields = ['user','message','owner','timestamp','formated_timestamp']
+		fields = ['id','user','message','owner','timestamp','formated_timestamp']
 	
 	def get_formated_timestamp(self,obj):
 		return obj.formatted_timestamp_milliseconds
