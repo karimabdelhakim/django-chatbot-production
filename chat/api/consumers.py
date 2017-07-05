@@ -9,24 +9,24 @@ from botlogic.Lina.Lina import callBot,edit_real_time
 def chat_history_api(message):
     print ("chat_history_api")
     msg = message.content['message']
+    msg_id = message.content['msg_id']
     userId = message.content['userId']
-    user = get_user_model().objects.get(pk=userId)
-    character = message.content['character']
-    line_id = message.content['line_id']
+    user = get_user_model().objects.get(pk=userId)    
     field = forms.CharField()
     if not (field.clean(msg)):
         raise forms.ValidationError("Message can not be empty")
     msg = field.clean(msg)
-    
-    if(line_id):
+
+    msg_obj = ChatMessage.objects.get(pk=msg_id)
+
+    if(msg_obj.lineId):
         print "edit_realtime_history"
         owner = "bot"
         reply_msg = edit_real_time(msg, character, line_id)
-        msg_obj = ChatMessage.objects.create(
-            user = user,
-            message = reply_msg,
-            owner = owner
-        )
+
+        msg_obj.message = msg_obj.message.split('\n')[0] + '\n' + reply_msg
+        msg_obj.save()
+        
         if(msg_obj):
             final_msg = {
                     "user":msg_obj.user.username,
@@ -50,8 +50,6 @@ def chat_history_api(message):
         
     else:
         print "intent_history"
-        msg_id = message.content['msg_id']
-        msg_obj = ChatMessage.objects.get(pk=msg_id)
         msg_obj.message = msg
         msg_obj.save()
                     
