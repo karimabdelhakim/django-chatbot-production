@@ -27,6 +27,13 @@
 *.sqlite
 *.sqlite3
 
+
+# pickle files #
+################
+*.pickle
+!curses.pickle
+
+
 # virtualenv folders/files #
 ############################
 Scripts
