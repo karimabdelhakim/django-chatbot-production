@@ -22,7 +22,7 @@ def chat_history_api(message):
     if(msg_obj.lineId):
         print "edit_realtime_history"
         owner = "bot"
-        reply_msg = edit_real_time(msg, character, line_id)
+        reply_msg = edit_real_time(msg, msg_obj.character, msg_obj.lineId)
 
         msg_obj.message = msg_obj.message.split('\n')[0] + '\n' + reply_msg
         msg_obj.save()
