@@ -41,6 +41,7 @@ def chat_history_api(message):
                     "owner": msg_obj.owner,
                     "type":reply_type,
                     "data":None,
+                    "line_id":msg_obj.lineId,
                     "msg_id":msg_obj.id,
                     "timestamp":msg_obj.formatted_timestamp,
                     "formated_timestamp":msg_obj.formatted_timestamp_milliseconds
@@ -138,6 +139,7 @@ def bot_send_api(message):
                 "owner": msg_obj.owner,
                 "type":response_type,
                 "data":response,
+                "line_id":msg_obj.lineId,
                 "msg_id":msg_obj.id,
                 "timestamp":msg_obj.formatted_timestamp,
                 "formated_timestamp":msg_obj.formatted_timestamp_milliseconds
