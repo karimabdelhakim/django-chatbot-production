@@ -8,6 +8,9 @@ from rest_framework.generics import (ListAPIView, RetrieveAPIView,
 from rest_framework.filters import ( SearchFilter, OrderingFilter)
 from rest_framework.permissions import (AllowAny,IsAuthenticated,
 	IsAdminUser,IsAuthenticatedOrReadOnly)
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework_bulk import ( BulkDestroyAPIView )
 #from .permissions import IsOwnerOrReadOnly,IsOwner
 from rest_framework.pagination import (LimitOffsetPagination)
 from .pagination import MessagesPageNumberPagination
@@ -46,6 +49,20 @@ class UserMessagesListAPIView(ListAPIView):
 		queryset_list = sorted(chain(chat_msgs_qs,bot_msgs_qs),key=attrgetter('timestamp'),reverse=True)
 		
 		return queryset_list
+
+class UserMessagesDestroyAPIView(BulkDestroyAPIView):
+	permission_classes = [IsAuthenticated]
+	def get_queryset(self,*args,**kwargs):
+		user = self.request.user
+		return ChatMessage.objects.filter(user=user)
+	def allow_bulk_destroy(self, qs, filtered):
+		# custom logic here
+		if len(qs) <=0:
+			return False
+		# default checks if the qs was filtered
+		# qs comes from self.get_queryset()
+		# filtered comes from self.filter_queryset(qs)
+		return qs == filtered
 
 #list all messages
 class MessagesListAPIView(ListAPIView):
