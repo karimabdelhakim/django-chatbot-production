@@ -22,10 +22,9 @@ def chat_history_api(message):
     if(msg_obj.lineId):
         print "edit_realtime_history"
         reply_type = "message"
-        owner = "bot"
         reply_msg = edit_real_time(msg, msg_obj.character, msg_obj.lineId)
 
-        msg_obj.message = msg_obj.message.split('\n')[0] + '\n' + reply_msg
+        msg_obj.message = msg_obj.message.split('\nNew reply:')[-1] + '\n' + reply_msg
         msg_obj.save()
         
     else:
@@ -50,7 +49,7 @@ def chat_history_api(message):
         final_msg = {
             "user":user.username,
             "msg": "sorry ,DB error",
-            "owner": owner,    
+            "owner": "bot",    
         }    
     print("final_msg",final_msg)    
     # Broadcast to listening socket(send user message to the user himself)
