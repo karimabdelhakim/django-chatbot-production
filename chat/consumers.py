@@ -1,5 +1,4 @@
 import json
-import time
 from django import forms
 from channels import Channel,Group
 # from channels.sessions import channel_session
@@ -7,9 +6,8 @@ from channels.auth import channel_session_user_from_http, channel_session_user
 
 from .models import ChatMessage
 
-####testing#####
-#from botlogic.Lina.Lina import callBot
-################
+
+from botlogic.Lina.Lina import callBot
 
 
 # Connected to chat.receive channel
@@ -50,7 +48,8 @@ def chat_send(message):
     #bot listening logic
     payload = {
         'reply_channel': message.content['reply_channel'],
-        'message': msg
+        'message': msg,
+        'character':message.content['character'],
     }
     Channel("bot.receive").send(payload)
 
@@ -64,35 +63,47 @@ def bot_send(message):
     owner = "bot"
     user = message.user 
     msg = message.content['message']
-    ####testing#####
-    #character = message.content['character']
-    ################
+    character = message.content['character']
     #bot logic
-    ####testing#####
-    #msg = callBot(msg,0)
-    ################
-    #msg = msg + "  ,bot reply"
-    #time.sleep(1)
-    #then
-    # Save to model
+    response_type,response =callBot(msg,character)
+    
+    if(response_type=="message"):
+        msg = response[0]
+        dataset_number = response[1]
+        line_id = response[2]
+    
+    elif(response_type=="intent"):
+        msg = ""
+        dataset_number = None
+        line_id = None
+            
     msg_obj = ChatMessage.objects.create(
         user = user,
         message = msg,
-        owner = owner
+        owner = owner,
+        lineId = line_id,
+        character = dataset_number
     )
     if(msg_obj):
         final_msg = {
-            "user":msg_obj.user.username,
-            "msg": msg_obj.message,
-            "owner": msg_obj.owner,
-            "timestamp":msg_obj.formatted_timestamp
+                "user":msg_obj.user.username,
+                "msg": msg_obj.message,
+                "owner": msg_obj.owner,
+                "type":response_type,
+                "data":response,
+                "line_id":msg_obj.lineId,
+                "msg_id":msg_obj.id,
+                "timestamp":msg_obj.formatted_timestamp,
+                "formated_timestamp":msg_obj.formatted_timestamp_milliseconds
         }
+        
     else:
         final_msg = {
             "user":user.username,
             "msg": "sorry ,DB error",
             "owner": owner,    
         }  
+    print("final_msg",final_msg)
     #print("final_msg",final_msg)
     # Broadcast to listening socket(send bot reply message to the user)
     message.reply_channel.send({"text": json.dumps(final_msg)})

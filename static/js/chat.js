@@ -28,6 +28,7 @@ $(function() {
         var message = {
             command: "send",
             message: $('#message').val(),
+            character: parseInt(document.getElementById("mySelect").value)
         }
         chatsock.send(JSON.stringify(message));
         $("#message").val('').focus();
