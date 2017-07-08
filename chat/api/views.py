@@ -43,8 +43,17 @@ class UserMessagesListAPIView(ListAPIView):
 
 		#user and bot messages sent to the specific user
 		chat_msgs_qs = ChatMessage.objects.filter(user=self.request.user).order_by('timestamp')
+		#get last date where messages where deleted
+		try:
+			profile = Profile.objects.get(user=self.request.user)
+			deleteDate = profile.delHistoryDate
+		except:
+			deleteDate= None
 		#bot messages sent to all existing users
-		bot_msgs_qs = BotMsgToAll.objects.filter(timestamp__gt=self.request.user.date_joined).order_by('timestamp')
+		if(deleteDate):
+			bot_msgs_qs = BotMsgToAll.objects.filter(timestamp__gt=self.request.user.date_joined).filter(timestamp__gt=deleteDate).order_by('timestamp')
+		else:
+			bot_msgs_qs = BotMsgToAll.objects.filter(timestamp__gt=self.request.user.date_joined).order_by('timestamp')
 		#joining the two list querysets into one sorted list queryset
 		#sorted by -timestamp cause reverse is True
 		queryset_list = sorted(chain(chat_msgs_qs,bot_msgs_qs),key=attrgetter('timestamp'),reverse=True)
@@ -58,17 +67,16 @@ class UserMessagesDestroyAPIView(BulkDestroyAPIView):
 		return ChatMessage.objects.filter(user=user)
 	def allow_bulk_destroy(self, qs, filtered):
 		# custom logic here
+		user = self.request.user
+		profile = Profile.objects.get(user=user)
+		profile.delHistoryDate = datetime.now() 
+		profile.save()
+		
 		if len(qs) <=0:
 			return False
 		# default checks if the qs was filtered
 		# qs comes from self.get_queryset()
 		# filtered comes from self.filter_queryset(qs)
-		if(qs == filtered):
-			user = self.request.user
-			profile = Profile.objects.get(user=user)
-			profile.delHistoryDate = datetime.now() 
-			profile.save()
-			
 		return qs == filtered
 
 #list all messages
