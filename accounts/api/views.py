@@ -24,6 +24,8 @@ class UserCreateAPIView(CreateAPIView):
 	serializer_class = UserCreateSerializer
 	#permissions_classes = [AllowAny] #default
 
+	
+
 class UserLoginAPIView(APIView):
 	#permissions_classes = [AllowAny] #default
 	#renderer_classes = [JSONRenderer] #you can use this at production

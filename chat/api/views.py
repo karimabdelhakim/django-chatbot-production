@@ -16,7 +16,8 @@ from rest_framework.pagination import (LimitOffsetPagination)
 from .pagination import MessagesPageNumberPagination
 from itertools import chain
 from operator import attrgetter
-
+from datetime import datetime
+from accounts.models import Profile
 
 #for testing chating with jwt authentication 
 @login_required
@@ -62,6 +63,12 @@ class UserMessagesDestroyAPIView(BulkDestroyAPIView):
 		# default checks if the qs was filtered
 		# qs comes from self.get_queryset()
 		# filtered comes from self.filter_queryset(qs)
+		if(qs == filtered):
+			user = self.request.user
+			profile = Profile.objects.get(user=user)
+			profile.delHistoryDate = datetime.now() 
+			profile.save()
+			
 		return qs == filtered
 
 #list all messages
