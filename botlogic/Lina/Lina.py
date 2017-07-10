@@ -504,45 +504,48 @@ def callBot(var, option):
             type = random.choice(["top rated", "popular"])
             result = loads(getResults("movie", type))
             resultString = "message('{0}({1}): {2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
-                                                             result["Overview"],
-                                                             result["poster"], "Trailer Link")
+                                                                       result["Overview"],
+                                                                       result["poster"], "Trailer Link")
             intents_full_result.append(('display_message', resultString))
         elif type == "show_movie":
             resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
             if (resultStr != "No Movie Found"):
                 result = loads(resultStr)
-                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
-                                                                       result["Overview"], result["poster"],
-                                                                       result["Trailer Link"],
-                                                                       map(lambda genre: genre.encode('ascii',
-                                                                                                      'replace'),
-                                                                           result['genres']))
+                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'],
+                                                                                 result["rating"],
+                                                                                 result["Overview"], result["poster"],
+                                                                                 result["Trailer Link"],
+                                                                                 map(lambda genre: genre.encode('ascii',
+                                                                                                                'replace'),
+                                                                                     result['genres']))
                 intents_full_result.append(('display_message', resultString))
             else:
-                intents_full_result.append(('display_message', "message('"+resultStr+"')"))
+                intents_full_result.append(('display_message', "message('" + resultStr + "')"))
         elif type == "show_trailer":
             resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
             if (resultStr != "No Movie Found"):
                 result = loads(resultStr)
-                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
-                                                                       result["Overview"], result["poster"],
-                                                                       result["Trailer Link"],
-                                                                       map(lambda genre: genre.encode('ascii',
-                                                                                                      'replace'),
-                                                                           result['genres']))
+                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'],
+                                                                                 result["rating"],
+                                                                                 result["Overview"], result["poster"],
+                                                                                 result["Trailer Link"],
+                                                                                 map(lambda genre: genre.encode('ascii',
+                                                                                                                'replace'),
+                                                                                     result['genres']))
                 intents_full_result.append(('display_message', resultString))
                 intents_full_result.append(('play_trailer', "trailer_link('" + result["Trailer Link"] + "')"))
             else:
-                intents_full_result.append(('display_message', "message('" + resultStr +"')"))
+                intents_full_result.append(('display_message', "message('" + resultStr + "')"))
 
         elif type == "recommend_movie":
             result = loads(getResults("movie", "genre:" + current_intent[1].split("('")[1].split("')")[0]))
             resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
-                                                                   result["Overview"], result["poster"],
-                                                                   result["Trailer Link"],
-                                                                   map(lambda genre: genre.encode('ascii', 'replace'),
-                                                                       result['genres']))
-            intents_full_result.append(('display_message', "message('"+resultString+"')"))
+                                                                             result["Overview"], result["poster"],
+                                                                             result["Trailer Link"],
+                                                                             map(lambda genre: genre.encode('ascii',
+                                                                                                            'replace'),
+                                                                                 result['genres']))
+            intents_full_result.append(('display_message', resultString))
 
         elif type == "show_weather":
             resultStr = getResults("weather", current_intent[1].split("('")[1].split("')")[0])
@@ -554,10 +557,11 @@ def callBot(var, option):
                     result['Humidity'])
                 intents_full_result.append(('display_message', resultString))
             else:
-                intents_full_result.append(('display_message', "message('"+resultStr+"')"))
+                intents_full_result.append(('display_message', "message('" + resultStr + "')"))
 
         else:
             intents_full_result.append(current_intent)
+
     return 'intent', intents_full_result
 
 
