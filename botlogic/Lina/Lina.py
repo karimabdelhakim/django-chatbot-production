@@ -503,7 +503,7 @@ def callBot(var, option):
         elif type == "suggest movie":
             type = random.choice(["top rated", "popular"])
             result = loads(getResults("movie", type))
-            resultString = "{0}({1}): {2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+            resultString = "message('{0}({1}): {2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
                                                              result["Overview"],
                                                              result["poster"], "Trailer Link")
             intents_full_result.append(('display_message', resultString))
@@ -511,7 +511,7 @@ def callBot(var, option):
             resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
             if (resultStr != "No Movie Found"):
                 result = loads(resultStr)
-                resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
                                                                        result["Overview"], result["poster"],
                                                                        result["Trailer Link"],
                                                                        map(lambda genre: genre.encode('ascii',
@@ -519,42 +519,42 @@ def callBot(var, option):
                                                                            result['genres']))
                 intents_full_result.append(('display_message', resultString))
             else:
-                intents_full_result.append(('display_message', resultStr))
+                intents_full_result.append(('display_message', "message('"+resultStr+"')"))
         elif type == "show_trailer":
             resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
             if (resultStr != "No Movie Found"):
                 result = loads(resultStr)
-                resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
                                                                        result["Overview"], result["poster"],
                                                                        result["Trailer Link"],
                                                                        map(lambda genre: genre.encode('ascii',
                                                                                                       'replace'),
                                                                            result['genres']))
                 intents_full_result.append(('display_message', resultString))
-                intents_full_result.append(('play_trailer', "trailer_link(" + result["Trailer Link"] + ")"))
+                intents_full_result.append(('play_trailer', "trailer_link('" + result["Trailer Link"] + "')"))
             else:
-                intents_full_result.append(('display_message', resultStr))
+                intents_full_result.append(('display_message', "message('" + resultStr +"')"))
 
         elif type == "recommend_movie":
             result = loads(getResults("movie", "genre:" + current_intent[1].split("('")[1].split("')")[0]))
-            resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+            resultString = "message('{0}({1}):\n{5}\n{2}\n{3}\n{4}')".format(result['Original Title'], result["rating"],
                                                                    result["Overview"], result["poster"],
                                                                    result["Trailer Link"],
                                                                    map(lambda genre: genre.encode('ascii', 'replace'),
                                                                        result['genres']))
-            intents_full_result.append(('display_message', resultString))
+            intents_full_result.append(('display_message', "message('"+resultString+"')"))
 
         elif type == "show_weather":
             resultStr = getResults("weather", current_intent[1].split("('")[1].split("')")[0])
             if (resultStr != "No Matching City Was Found"):
                 result = loads(getResults("weather", type))
-                resultString = "{0} with temperature of {1} Celsius and Humidity of {2}".format(
+                resultString = "message('{0} with temperature of {1} Celsius and Humidity of {2}')".format(
                     result['Weather Condition'],
                     result['Temperature In Celcius'],
                     result['Humidity'])
                 intents_full_result.append(('display_message', resultString))
             else:
-                intents_full_result.append(('display_message', resultStr))
+                intents_full_result.append(('display_message', "message('"+resultStr+"')"))
 
         else:
             intents_full_result.append(current_intent)
