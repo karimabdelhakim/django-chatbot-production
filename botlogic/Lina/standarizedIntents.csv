@@ -1,0 +1,812 @@
+Input,Action
+most recent alarm and where am i,next_alarm - location
+most recent alarm and would you please open map,next_alarm - location
+most recent alarm and launch map,next_alarm - location
+most recent alarm and what time is it now,next_alarm - show_time
+most recent alarm and can i ask you what is the time,next_alarm - show_time
+most recent alarm and what is the time please,next_alarm - show_time
+most recent alarm and can you please tell me what is the time,next_alarm - show_time
+most recent alarm and do you have the time,next_alarm - show_time
+most recent alarm and do you know what time it is,next_alarm - show_time
+most recent alarm and can you tell me what time it is please,next_alarm - show_time
+most recent alarm and what day is ,next_alarm - show_date
+most recent alarm and what day is it  ,next_alarm - show_date
+most recent alarm and whats the date ,next_alarm - show_date
+most recent alarm and what day is it ,next_alarm - show_date
+most recent alarm and what is date ,next_alarm - show_date
+most recent alarm and show me the date and time,next_alarm - show_date_time
+most recent alarm and date and time,next_alarm - show_date_time
+most recent alarm and what is the date and time,next_alarm - show_date_time
+most recent alarm and what to watch in movie,next_alarm - suggest movie
+most recent alarm and tell me what to watch,next_alarm - suggest movie
+most recent alarm and suggest a movie,next_alarm - suggest movie
+most recent alarm and what to watch in movie,next_alarm - suggest movie
+most recent alarm and tell me what to watch,next_alarm - suggest movie
+most recent alarm and suggest a movie,next_alarm - suggest movie
+most recent alarm and recommend me a movie,next_alarm - suggest movie
+most recent alarm and can you tell me the weather  ,next_alarm - check weather
+most recent alarm and how is the weather today  ,next_alarm - check weather
+most recent alarm and is it hot today  ,next_alarm - check weather
+most recent alarm and is it cold today  ,next_alarm - check weather
+most recent alarm and is it going to rain today  ,next_alarm - check weather
+most recent alarm and will it rain today  ,next_alarm - check weather
+most recent alarm and how is the humidity today  ,next_alarm - check weather
+most recent alarm and show me last note,next_alarm - last_saved_note
+most recent alarm and last note,next_alarm - last_saved_note
+most recent alarm and last saved note,next_alarm - last_saved_note
+most recent alarm and show me all notes,next_alarm - show_all_notes
+most recent alarm and preview all notes,next_alarm - show_all_notes
+show me next alarm and where am i,next_alarm - location
+show me next alarm and would you please open map,next_alarm - location
+show me next alarm and launch map,next_alarm - location
+show me next alarm and what time is it now,next_alarm - show_time
+show me next alarm and can i ask you what is the time,next_alarm - show_time
+show me next alarm and what is the time please,next_alarm - show_time
+show me next alarm and can you please tell me what is the time,next_alarm - show_time
+show me next alarm and do you have the time,next_alarm - show_time
+show me next alarm and do you know what time it is,next_alarm - show_time
+show me next alarm and can you tell me what time it is please,next_alarm - show_time
+show me next alarm and what day is ,next_alarm - show_date
+show me next alarm and what day is it  ,next_alarm - show_date
+show me next alarm and whats the date ,next_alarm - show_date
+show me next alarm and what day is it ,next_alarm - show_date
+show me next alarm and what is date ,next_alarm - show_date
+show me next alarm and show me the date and time,next_alarm - show_date_time
+show me next alarm and date and time,next_alarm - show_date_time
+show me next alarm and what is the date and time,next_alarm - show_date_time
+show me next alarm and what to watch in movie,next_alarm - suggest movie
+show me next alarm and tell me what to watch,next_alarm - suggest movie
+show me next alarm and suggest a movie,next_alarm - suggest movie
+show me next alarm and what to watch in movie,next_alarm - suggest movie
+show me next alarm and tell me what to watch,next_alarm - suggest movie
+show me next alarm and suggest a movie,next_alarm - suggest movie
+show me next alarm and recommend me a movie,next_alarm - suggest movie
+show me next alarm and can you tell me the weather  ,next_alarm - check weather
+show me next alarm and how is the weather today  ,next_alarm - check weather
+show me next alarm and is it hot today  ,next_alarm - check weather
+show me next alarm and is it cold today  ,next_alarm - check weather
+show me next alarm and is it going to rain today  ,next_alarm - check weather
+show me next alarm and will it rain today  ,next_alarm - check weather
+show me next alarm and how is the humidity today  ,next_alarm - check weather
+show me next alarm and show me last note,next_alarm - last_saved_note
+show me next alarm and last note,next_alarm - last_saved_note
+show me next alarm and last saved note,next_alarm - last_saved_note
+show me next alarm and show me all notes,next_alarm - show_all_notes
+show me next alarm and preview all notes,next_alarm - show_all_notes
+what is the next alarm and where am i,next_alarm - location
+what is the next alarm and would you please open map,next_alarm - location
+what is the next alarm and launch map,next_alarm - location
+what is the next alarm and what time is it now,next_alarm - show_time
+what is the next alarm and can i ask you what is the time,next_alarm - show_time
+what is the next alarm and what is the time please,next_alarm - show_time
+what is the next alarm and can you please tell me what is the time,next_alarm - show_time
+what is the next alarm and do you have the time,next_alarm - show_time
+what is the next alarm and do you know what time it is,next_alarm - show_time
+what is the next alarm and can you tell me what time it is please,next_alarm - show_time
+what is the next alarm and what day is ,next_alarm - show_date
+what is the next alarm and what day is it  ,next_alarm - show_date
+what is the next alarm and whats the date ,next_alarm - show_date
+what is the next alarm and what day is it ,next_alarm - show_date
+what is the next alarm and what is date ,next_alarm - show_date
+what is the next alarm and show me the date and time,next_alarm - show_date_time
+what is the next alarm and date and time,next_alarm - show_date_time
+what is the next alarm and what is the date and time,next_alarm - show_date_time
+what is the next alarm and what to watch in movie,next_alarm - suggest movie
+what is the next alarm and tell me what to watch,next_alarm - suggest movie
+what is the next alarm and suggest a movie,next_alarm - suggest movie
+what is the next alarm and what to watch in movie,next_alarm - suggest movie
+what is the next alarm and tell me what to watch,next_alarm - suggest movie
+what is the next alarm and suggest a movie,next_alarm - suggest movie
+what is the next alarm and recommend me a movie,next_alarm - suggest movie
+what is the next alarm and can you tell me the weather  ,next_alarm - check weather
+what is the next alarm and how is the weather today  ,next_alarm - check weather
+what is the next alarm and is it hot today  ,next_alarm - check weather
+what is the next alarm and is it cold today  ,next_alarm - check weather
+what is the next alarm and is it going to rain today  ,next_alarm - check weather
+what is the next alarm and will it rain today  ,next_alarm - check weather
+what is the next alarm and how is the humidity today  ,next_alarm - check weather
+what is the next alarm and show me last note,next_alarm - last_saved_note
+what is the next alarm and last note,next_alarm - last_saved_note
+what is the next alarm and last saved note,next_alarm - last_saved_note
+what is the next alarm and show me all notes,next_alarm - show_all_notes
+what is the next alarm and preview all notes,next_alarm - show_all_notes
+view next alarm and where am i,next_alarm - location
+view next alarm and would you please open map,next_alarm - location
+view next alarm and launch map,next_alarm - location
+view next alarm and what time is it now,next_alarm - show_time
+view next alarm and can i ask you what is the time,next_alarm - show_time
+view next alarm and what is the time please,next_alarm - show_time
+view next alarm and can you please tell me what is the time,next_alarm - show_time
+view next alarm and do you have the time,next_alarm - show_time
+view next alarm and do you know what time it is,next_alarm - show_time
+view next alarm and can you tell me what time it is please,next_alarm - show_time
+view next alarm and what day is ,next_alarm - show_date
+view next alarm and what day is it  ,next_alarm - show_date
+view next alarm and whats the date ,next_alarm - show_date
+view next alarm and what day is it ,next_alarm - show_date
+view next alarm and what is date ,next_alarm - show_date
+view next alarm and show me the date and time,next_alarm - show_date_time
+view next alarm and date and time,next_alarm - show_date_time
+view next alarm and what is the date and time,next_alarm - show_date_time
+view next alarm and what to watch in movie,next_alarm - suggest movie
+view next alarm and tell me what to watch,next_alarm - suggest movie
+view next alarm and suggest a movie,next_alarm - suggest movie
+view next alarm and what to watch in movie,next_alarm - suggest movie
+view next alarm and tell me what to watch,next_alarm - suggest movie
+view next alarm and suggest a movie,next_alarm - suggest movie
+view next alarm and recommend me a movie,next_alarm - suggest movie
+view next alarm and can you tell me the weather  ,next_alarm - check weather
+view next alarm and how is the weather today  ,next_alarm - check weather
+view next alarm and is it hot today  ,next_alarm - check weather
+view next alarm and is it cold today  ,next_alarm - check weather
+view next alarm and is it going to rain today  ,next_alarm - check weather
+view next alarm and will it rain today  ,next_alarm - check weather
+view next alarm and how is the humidity today  ,next_alarm - check weather
+view next alarm and show me last note,next_alarm - last_saved_note
+view next alarm and last note,next_alarm - last_saved_note
+view next alarm and last saved note,next_alarm - last_saved_note
+view next alarm and show me all notes,next_alarm - show_all_notes
+view next alarm and preview all notes,next_alarm - show_all_notes
+most coming alarm and where am i,next_alarm - location
+most coming alarm and would you please open map,next_alarm - location
+most coming alarm and launch map,next_alarm - location
+most coming alarm and what time is it now,next_alarm - show_time
+most coming alarm and can i ask you what is the time,next_alarm - show_time
+most coming alarm and what is the time please,next_alarm - show_time
+most coming alarm and can you please tell me what is the time,next_alarm - show_time
+most coming alarm and do you have the time,next_alarm - show_time
+most coming alarm and do you know what time it is,next_alarm - show_time
+most coming alarm and can you tell me what time it is please,next_alarm - show_time
+most coming alarm and what day is ,next_alarm - show_date
+most coming alarm and what day is it  ,next_alarm - show_date
+most coming alarm and whats the date ,next_alarm - show_date
+most coming alarm and what day is it ,next_alarm - show_date
+most coming alarm and what is date ,next_alarm - show_date
+most coming alarm and show me the date and time,next_alarm - show_date_time
+most coming alarm and date and time,next_alarm - show_date_time
+most coming alarm and what is the date and time,next_alarm - show_date_time
+most coming alarm and what to watch in movie,next_alarm - suggest movie
+most coming alarm and tell me what to watch,next_alarm - suggest movie
+most coming alarm and suggest a movie,next_alarm - suggest movie
+most coming alarm and what to watch in movie,next_alarm - suggest movie
+most coming alarm and tell me what to watch,next_alarm - suggest movie
+most coming alarm and suggest a movie,next_alarm - suggest movie
+most coming alarm and recommend me a movie,next_alarm - suggest movie
+most coming alarm and can you tell me the weather  ,next_alarm - check weather
+most coming alarm and how is the weather today  ,next_alarm - check weather
+most coming alarm and is it hot today  ,next_alarm - check weather
+most coming alarm and is it cold today  ,next_alarm - check weather
+most coming alarm and is it going to rain today  ,next_alarm - check weather
+most coming alarm and will it rain today  ,next_alarm - check weather
+most coming alarm and how is the humidity today  ,next_alarm - check weather
+most coming alarm and show me last note,next_alarm - last_saved_note
+most coming alarm and last note,next_alarm - last_saved_note
+most coming alarm and last saved note,next_alarm - last_saved_note
+most coming alarm and show me all notes,next_alarm - show_all_notes
+most coming alarm and preview all notes,next_alarm - show_all_notes
+where am i and what time is it now,location - show_time
+where am i and can i ask you what is the time,location - show_time
+where am i and what is the time please,location - show_time
+where am i and can you please tell me what is the time,location - show_time
+where am i and do you have the time,location - show_time
+where am i and do you know what time it is,location - show_time
+where am i and can you tell me what time it is please,location - show_time
+where am i and what day is ,location - show_date
+where am i and what day is it  ,location - show_date
+where am i and whats the date ,location - show_date
+where am i and what day is it ,location - show_date
+where am i and what is date ,location - show_date
+where am i and show me the date and time,location - show_date_time
+where am i and date and time,location - show_date_time
+where am i and what is the date and time,location - show_date_time
+where am i and what to watch in movie,location - suggest movie
+where am i and tell me what to watch,location - suggest movie
+where am i and suggest a movie,location - suggest movie
+where am i and what to watch in movie,location - suggest movie
+where am i and tell me what to watch,location - suggest movie
+where am i and suggest a movie,location - suggest movie
+where am i and recommend me a movie,location - suggest movie
+where am i and can you tell me the weather  ,location - check weather
+where am i and how is the weather today  ,location - check weather
+where am i and is it hot today  ,location - check weather
+where am i and is it cold today  ,location - check weather
+where am i and is it going to rain today  ,location - check weather
+where am i and will it rain today  ,location - check weather
+where am i and how is the humidity today  ,location - check weather
+where am i and show me last note,location - last_saved_note
+where am i and last note,location - last_saved_note
+where am i and last saved note,location - last_saved_note
+where am i and show me all notes,location - show_all_notes
+where am i and preview all notes,location - show_all_notes
+would you please open map and what time is it now,location - show_time
+would you please open map and can i ask you what is the time,location - show_time
+would you please open map and what is the time please,location - show_time
+would you please open map and can you please tell me what is the time,location - show_time
+would you please open map and do you have the time,location - show_time
+would you please open map and do you know what time it is,location - show_time
+would you please open map and can you tell me what time it is please,location - show_time
+would you please open map and what day is ,location - show_date
+would you please open map and what day is it  ,location - show_date
+would you please open map and whats the date ,location - show_date
+would you please open map and what day is it ,location - show_date
+would you please open map and what is date ,location - show_date
+would you please open map and show me the date and time,location - show_date_time
+would you please open map and date and time,location - show_date_time
+would you please open map and what is the date and time,location - show_date_time
+would you please open map and what to watch in movie,location - suggest movie
+would you please open map and tell me what to watch,location - suggest movie
+would you please open map and suggest a movie,location - suggest movie
+would you please open map and what to watch in movie,location - suggest movie
+would you please open map and tell me what to watch,location - suggest movie
+would you please open map and suggest a movie,location - suggest movie
+would you please open map and recommend me a movie,location - suggest movie
+would you please open map and can you tell me the weather  ,location - check weather
+would you please open map and how is the weather today  ,location - check weather
+would you please open map and is it hot today  ,location - check weather
+would you please open map and is it cold today  ,location - check weather
+would you please open map and is it going to rain today  ,location - check weather
+would you please open map and will it rain today  ,location - check weather
+would you please open map and how is the humidity today  ,location - check weather
+would you please open map and show me last note,location - last_saved_note
+would you please open map and last note,location - last_saved_note
+would you please open map and last saved note,location - last_saved_note
+would you please open map and show me all notes,location - show_all_notes
+would you please open map and preview all notes,location - show_all_notes
+launch map and what time is it now,location - show_time
+launch map and can i ask you what is the time,location - show_time
+launch map and what is the time please,location - show_time
+launch map and can you please tell me what is the time,location - show_time
+launch map and do you have the time,location - show_time
+launch map and do you know what time it is,location - show_time
+launch map and can you tell me what time it is please,location - show_time
+launch map and what day is ,location - show_date
+launch map and what day is it  ,location - show_date
+launch map and whats the date ,location - show_date
+launch map and what day is it ,location - show_date
+launch map and what is date ,location - show_date
+launch map and show me the date and time,location - show_date_time
+launch map and date and time,location - show_date_time
+launch map and what is the date and time,location - show_date_time
+launch map and what to watch in movie,location - suggest movie
+launch map and tell me what to watch,location - suggest movie
+launch map and suggest a movie,location - suggest movie
+launch map and what to watch in movie,location - suggest movie
+launch map and tell me what to watch,location - suggest movie
+launch map and suggest a movie,location - suggest movie
+launch map and recommend me a movie,location - suggest movie
+launch map and can you tell me the weather  ,location - check weather
+launch map and how is the weather today  ,location - check weather
+launch map and is it hot today  ,location - check weather
+launch map and is it cold today  ,location - check weather
+launch map and is it going to rain today  ,location - check weather
+launch map and will it rain today  ,location - check weather
+launch map and how is the humidity today  ,location - check weather
+launch map and show me last note,location - last_saved_note
+launch map and last note,location - last_saved_note
+launch map and last saved note,location - last_saved_note
+launch map and show me all notes,location - show_all_notes
+launch map and preview all notes,location - show_all_notes
+what time is it now and what day is ,show_time - show_date
+what time is it now and what day is it  ,show_time - show_date
+what time is it now and whats the date ,show_time - show_date
+what time is it now and what day is it ,show_time - show_date
+what time is it now and what is date ,show_time - show_date
+what time is it now and show me the date and time,show_time - show_date_time
+what time is it now and date and time,show_time - show_date_time
+what time is it now and what is the date and time,show_time - show_date_time
+what time is it now and what to watch in movie,show_time - suggest movie
+what time is it now and tell me what to watch,show_time - suggest movie
+what time is it now and suggest a movie,show_time - suggest movie
+what time is it now and what to watch in movie,show_time - suggest movie
+what time is it now and tell me what to watch,show_time - suggest movie
+what time is it now and suggest a movie,show_time - suggest movie
+what time is it now and recommend me a movie,show_time - suggest movie
+what time is it now and can you tell me the weather  ,show_time - check weather
+what time is it now and how is the weather today  ,show_time - check weather
+what time is it now and is it hot today  ,show_time - check weather
+what time is it now and is it cold today  ,show_time - check weather
+what time is it now and is it going to rain today  ,show_time - check weather
+what time is it now and will it rain today  ,show_time - check weather
+what time is it now and how is the humidity today  ,show_time - check weather
+what time is it now and show me last note,show_time - last_saved_note
+what time is it now and last note,show_time - last_saved_note
+what time is it now and last saved note,show_time - last_saved_note
+what time is it now and show me all notes,show_time - show_all_notes
+what time is it now and preview all notes,show_time - show_all_notes
+can i ask you what is the time and what day is ,show_time - show_date
+can i ask you what is the time and what day is it  ,show_time - show_date
+can i ask you what is the time and whats the date ,show_time - show_date
+can i ask you what is the time and what day is it ,show_time - show_date
+can i ask you what is the time and what is date ,show_time - show_date
+can i ask you what is the time and show me the date and time,show_time - show_date_time
+can i ask you what is the time and date and time,show_time - show_date_time
+can i ask you what is the time and what is the date and time,show_time - show_date_time
+can i ask you what is the time and what to watch in movie,show_time - suggest movie
+can i ask you what is the time and tell me what to watch,show_time - suggest movie
+can i ask you what is the time and suggest a movie,show_time - suggest movie
+can i ask you what is the time and what to watch in movie,show_time - suggest movie
+can i ask you what is the time and tell me what to watch,show_time - suggest movie
+can i ask you what is the time and suggest a movie,show_time - suggest movie
+can i ask you what is the time and recommend me a movie,show_time - suggest movie
+can i ask you what is the time and can you tell me the weather  ,show_time - check weather
+can i ask you what is the time and how is the weather today  ,show_time - check weather
+can i ask you what is the time and is it hot today  ,show_time - check weather
+can i ask you what is the time and is it cold today  ,show_time - check weather
+can i ask you what is the time and is it going to rain today  ,show_time - check weather
+can i ask you what is the time and will it rain today  ,show_time - check weather
+can i ask you what is the time and how is the humidity today  ,show_time - check weather
+can i ask you what is the time and show me last note,show_time - last_saved_note
+can i ask you what is the time and last note,show_time - last_saved_note
+can i ask you what is the time and last saved note,show_time - last_saved_note
+can i ask you what is the time and show me all notes,show_time - show_all_notes
+can i ask you what is the time and preview all notes,show_time - show_all_notes
+what is the time please and what day is ,show_time - show_date
+what is the time please and what day is it  ,show_time - show_date
+what is the time please and whats the date ,show_time - show_date
+what is the time please and what day is it ,show_time - show_date
+what is the time please and what is date ,show_time - show_date
+what is the time please and show me the date and time,show_time - show_date_time
+what is the time please and date and time,show_time - show_date_time
+what is the time please and what is the date and time,show_time - show_date_time
+what is the time please and what to watch in movie,show_time - suggest movie
+what is the time please and tell me what to watch,show_time - suggest movie
+what is the time please and suggest a movie,show_time - suggest movie
+what is the time please and what to watch in movie,show_time - suggest movie
+what is the time please and tell me what to watch,show_time - suggest movie
+what is the time please and suggest a movie,show_time - suggest movie
+what is the time please and recommend me a movie,show_time - suggest movie
+what is the time please and can you tell me the weather  ,show_time - check weather
+what is the time please and how is the weather today  ,show_time - check weather
+what is the time please and is it hot today  ,show_time - check weather
+what is the time please and is it cold today  ,show_time - check weather
+what is the time please and is it going to rain today  ,show_time - check weather
+what is the time please and will it rain today  ,show_time - check weather
+what is the time please and how is the humidity today  ,show_time - check weather
+what is the time please and show me last note,show_time - last_saved_note
+what is the time please and last note,show_time - last_saved_note
+what is the time please and last saved note,show_time - last_saved_note
+what is the time please and show me all notes,show_time - show_all_notes
+what is the time please and preview all notes,show_time - show_all_notes
+can you please tell me what is the time and what day is ,show_time - show_date
+can you please tell me what is the time and what day is it  ,show_time - show_date
+can you please tell me what is the time and whats the date ,show_time - show_date
+can you please tell me what is the time and what day is it ,show_time - show_date
+can you please tell me what is the time and what is date ,show_time - show_date
+can you please tell me what is the time and show me the date and time,show_time - show_date_time
+can you please tell me what is the time and date and time,show_time - show_date_time
+can you please tell me what is the time and what is the date and time,show_time - show_date_time
+can you please tell me what is the time and what to watch in movie,show_time - suggest movie
+can you please tell me what is the time and tell me what to watch,show_time - suggest movie
+can you please tell me what is the time and suggest a movie,show_time - suggest movie
+can you please tell me what is the time and what to watch in movie,show_time - suggest movie
+can you please tell me what is the time and tell me what to watch,show_time - suggest movie
+can you please tell me what is the time and suggest a movie,show_time - suggest movie
+can you please tell me what is the time and recommend me a movie,show_time - suggest movie
+can you please tell me what is the time and can you tell me the weather  ,show_time - check weather
+can you please tell me what is the time and how is the weather today  ,show_time - check weather
+can you please tell me what is the time and is it hot today  ,show_time - check weather
+can you please tell me what is the time and is it cold today  ,show_time - check weather
+can you please tell me what is the time and is it going to rain today  ,show_time - check weather
+can you please tell me what is the time and will it rain today  ,show_time - check weather
+can you please tell me what is the time and how is the humidity today  ,show_time - check weather
+can you please tell me what is the time and show me last note,show_time - last_saved_note
+can you please tell me what is the time and last note,show_time - last_saved_note
+can you please tell me what is the time and last saved note,show_time - last_saved_note
+can you please tell me what is the time and show me all notes,show_time - show_all_notes
+can you please tell me what is the time and preview all notes,show_time - show_all_notes
+do you have the time and what day is ,show_time - show_date
+do you have the time and what day is it  ,show_time - show_date
+do you have the time and whats the date ,show_time - show_date
+do you have the time and what day is it ,show_time - show_date
+do you have the time and what is date ,show_time - show_date
+do you have the time and show me the date and time,show_time - show_date_time
+do you have the time and date and time,show_time - show_date_time
+do you have the time and what is the date and time,show_time - show_date_time
+do you have the time and what to watch in movie,show_time - suggest movie
+do you have the time and tell me what to watch,show_time - suggest movie
+do you have the time and suggest a movie,show_time - suggest movie
+do you have the time and what to watch in movie,show_time - suggest movie
+do you have the time and tell me what to watch,show_time - suggest movie
+do you have the time and suggest a movie,show_time - suggest movie
+do you have the time and recommend me a movie,show_time - suggest movie
+do you have the time and can you tell me the weather  ,show_time - check weather
+do you have the time and how is the weather today  ,show_time - check weather
+do you have the time and is it hot today  ,show_time - check weather
+do you have the time and is it cold today  ,show_time - check weather
+do you have the time and is it going to rain today  ,show_time - check weather
+do you have the time and will it rain today  ,show_time - check weather
+do you have the time and how is the humidity today  ,show_time - check weather
+do you have the time and show me last note,show_time - last_saved_note
+do you have the time and last note,show_time - last_saved_note
+do you have the time and last saved note,show_time - last_saved_note
+do you have the time and show me all notes,show_time - show_all_notes
+do you have the time and preview all notes,show_time - show_all_notes
+do you know what time it is and what day is ,show_time - show_date
+do you know what time it is and what day is it  ,show_time - show_date
+do you know what time it is and whats the date ,show_time - show_date
+do you know what time it is and what day is it ,show_time - show_date
+do you know what time it is and what is date ,show_time - show_date
+do you know what time it is and show me the date and time,show_time - show_date_time
+do you know what time it is and date and time,show_time - show_date_time
+do you know what time it is and what is the date and time,show_time - show_date_time
+do you know what time it is and what to watch in movie,show_time - suggest movie
+do you know what time it is and tell me what to watch,show_time - suggest movie
+do you know what time it is and suggest a movie,show_time - suggest movie
+do you know what time it is and what to watch in movie,show_time - suggest movie
+do you know what time it is and tell me what to watch,show_time - suggest movie
+do you know what time it is and suggest a movie,show_time - suggest movie
+do you know what time it is and recommend me a movie,show_time - suggest movie
+do you know what time it is and can you tell me the weather  ,show_time - check weather
+do you know what time it is and how is the weather today  ,show_time - check weather
+do you know what time it is and is it hot today  ,show_time - check weather
+do you know what time it is and is it cold today  ,show_time - check weather
+do you know what time it is and is it going to rain today  ,show_time - check weather
+do you know what time it is and will it rain today  ,show_time - check weather
+do you know what time it is and how is the humidity today  ,show_time - check weather
+do you know what time it is and show me last note,show_time - last_saved_note
+do you know what time it is and last note,show_time - last_saved_note
+do you know what time it is and last saved note,show_time - last_saved_note
+do you know what time it is and show me all notes,show_time - show_all_notes
+do you know what time it is and preview all notes,show_time - show_all_notes
+can you tell me what time it is please and what day is ,show_time - show_date
+can you tell me what time it is please and what day is it  ,show_time - show_date
+can you tell me what time it is please and whats the date ,show_time - show_date
+can you tell me what time it is please and what day is it ,show_time - show_date
+can you tell me what time it is please and what is date ,show_time - show_date
+can you tell me what time it is please and show me the date and time,show_time - show_date_time
+can you tell me what time it is please and date and time,show_time - show_date_time
+can you tell me what time it is please and what is the date and time,show_time - show_date_time
+can you tell me what time it is please and what to watch in movie,show_time - suggest movie
+can you tell me what time it is please and tell me what to watch,show_time - suggest movie
+can you tell me what time it is please and suggest a movie,show_time - suggest movie
+can you tell me what time it is please and what to watch in movie,show_time - suggest movie
+can you tell me what time it is please and tell me what to watch,show_time - suggest movie
+can you tell me what time it is please and suggest a movie,show_time - suggest movie
+can you tell me what time it is please and recommend me a movie,show_time - suggest movie
+can you tell me what time it is please and can you tell me the weather  ,show_time - check weather
+can you tell me what time it is please and how is the weather today  ,show_time - check weather
+can you tell me what time it is please and is it hot today  ,show_time - check weather
+can you tell me what time it is please and is it cold today  ,show_time - check weather
+can you tell me what time it is please and is it going to rain today  ,show_time - check weather
+can you tell me what time it is please and will it rain today  ,show_time - check weather
+can you tell me what time it is please and how is the humidity today  ,show_time - check weather
+can you tell me what time it is please and show me last note,show_time - last_saved_note
+can you tell me what time it is please and last note,show_time - last_saved_note
+can you tell me what time it is please and last saved note,show_time - last_saved_note
+can you tell me what time it is please and show me all notes,show_time - show_all_notes
+can you tell me what time it is please and preview all notes,show_time - show_all_notes
+what day is  and show me the date and time,show_date - show_date_time
+what day is  and date and time,show_date - show_date_time
+what day is  and what is the date and time,show_date - show_date_time
+what day is  and what to watch in movie,show_date - suggest movie
+what day is  and tell me what to watch,show_date - suggest movie
+what day is  and suggest a movie,show_date - suggest movie
+what day is  and what to watch in movie,show_date - suggest movie
+what day is  and tell me what to watch,show_date - suggest movie
+what day is  and suggest a movie,show_date - suggest movie
+what day is  and recommend me a movie,show_date - suggest movie
+what day is  and can you tell me the weather  ,show_date - check weather
+what day is  and how is the weather today  ,show_date - check weather
+what day is  and is it hot today  ,show_date - check weather
+what day is  and is it cold today  ,show_date - check weather
+what day is  and is it going to rain today  ,show_date - check weather
+what day is  and will it rain today  ,show_date - check weather
+what day is  and how is the humidity today  ,show_date - check weather
+what day is  and show me last note,show_date - last_saved_note
+what day is  and last note,show_date - last_saved_note
+what day is  and last saved note,show_date - last_saved_note
+what day is  and show me all notes,show_date - show_all_notes
+what day is  and preview all notes,show_date - show_all_notes
+what day is it   and show me the date and time,show_date - show_date_time
+what day is it   and date and time,show_date - show_date_time
+what day is it   and what is the date and time,show_date - show_date_time
+what day is it   and what to watch in movie,show_date - suggest movie
+what day is it   and tell me what to watch,show_date - suggest movie
+what day is it   and suggest a movie,show_date - suggest movie
+what day is it   and what to watch in movie,show_date - suggest movie
+what day is it   and tell me what to watch,show_date - suggest movie
+what day is it   and suggest a movie,show_date - suggest movie
+what day is it   and recommend me a movie,show_date - suggest movie
+what day is it   and can you tell me the weather  ,show_date - check weather
+what day is it   and how is the weather today  ,show_date - check weather
+what day is it   and is it hot today  ,show_date - check weather
+what day is it   and is it cold today  ,show_date - check weather
+what day is it   and is it going to rain today  ,show_date - check weather
+what day is it   and will it rain today  ,show_date - check weather
+what day is it   and how is the humidity today  ,show_date - check weather
+what day is it   and show me last note,show_date - last_saved_note
+what day is it   and last note,show_date - last_saved_note
+what day is it   and last saved note,show_date - last_saved_note
+what day is it   and show me all notes,show_date - show_all_notes
+what day is it   and preview all notes,show_date - show_all_notes
+whats the date  and show me the date and time,show_date - show_date_time
+whats the date  and date and time,show_date - show_date_time
+whats the date  and what is the date and time,show_date - show_date_time
+whats the date  and what to watch in movie,show_date - suggest movie
+whats the date  and tell me what to watch,show_date - suggest movie
+whats the date  and suggest a movie,show_date - suggest movie
+whats the date  and what to watch in movie,show_date - suggest movie
+whats the date  and tell me what to watch,show_date - suggest movie
+whats the date  and suggest a movie,show_date - suggest movie
+whats the date  and recommend me a movie,show_date - suggest movie
+whats the date  and can you tell me the weather  ,show_date - check weather
+whats the date  and how is the weather today  ,show_date - check weather
+whats the date  and is it hot today  ,show_date - check weather
+whats the date  and is it cold today  ,show_date - check weather
+whats the date  and is it going to rain today  ,show_date - check weather
+whats the date  and will it rain today  ,show_date - check weather
+whats the date  and how is the humidity today  ,show_date - check weather
+whats the date  and show me last note,show_date - last_saved_note
+whats the date  and last note,show_date - last_saved_note
+whats the date  and last saved note,show_date - last_saved_note
+whats the date  and show me all notes,show_date - show_all_notes
+whats the date  and preview all notes,show_date - show_all_notes
+what day is it  and show me the date and time,show_date - show_date_time
+what day is it  and date and time,show_date - show_date_time
+what day is it  and what is the date and time,show_date - show_date_time
+what day is it  and what to watch in movie,show_date - suggest movie
+what day is it  and tell me what to watch,show_date - suggest movie
+what day is it  and suggest a movie,show_date - suggest movie
+what day is it  and what to watch in movie,show_date - suggest movie
+what day is it  and tell me what to watch,show_date - suggest movie
+what day is it  and suggest a movie,show_date - suggest movie
+what day is it  and recommend me a movie,show_date - suggest movie
+what day is it  and can you tell me the weather  ,show_date - check weather
+what day is it  and how is the weather today  ,show_date - check weather
+what day is it  and is it hot today  ,show_date - check weather
+what day is it  and is it cold today  ,show_date - check weather
+what day is it  and is it going to rain today  ,show_date - check weather
+what day is it  and will it rain today  ,show_date - check weather
+what day is it  and how is the humidity today  ,show_date - check weather
+what day is it  and show me last note,show_date - last_saved_note
+what day is it  and last note,show_date - last_saved_note
+what day is it  and last saved note,show_date - last_saved_note
+what day is it  and show me all notes,show_date - show_all_notes
+what day is it  and preview all notes,show_date - show_all_notes
+what is date  and show me the date and time,show_date - show_date_time
+what is date  and date and time,show_date - show_date_time
+what is date  and what is the date and time,show_date - show_date_time
+what is date  and what to watch in movie,show_date - suggest movie
+what is date  and tell me what to watch,show_date - suggest movie
+what is date  and suggest a movie,show_date - suggest movie
+what is date  and what to watch in movie,show_date - suggest movie
+what is date  and tell me what to watch,show_date - suggest movie
+what is date  and suggest a movie,show_date - suggest movie
+what is date  and recommend me a movie,show_date - suggest movie
+what is date  and can you tell me the weather  ,show_date - check weather
+what is date  and how is the weather today  ,show_date - check weather
+what is date  and is it hot today  ,show_date - check weather
+what is date  and is it cold today  ,show_date - check weather
+what is date  and is it going to rain today  ,show_date - check weather
+what is date  and will it rain today  ,show_date - check weather
+what is date  and how is the humidity today  ,show_date - check weather
+what is date  and show me last note,show_date - last_saved_note
+what is date  and last note,show_date - last_saved_note
+what is date  and last saved note,show_date - last_saved_note
+what is date  and show me all notes,show_date - show_all_notes
+what is date  and preview all notes,show_date - show_all_notes
+show me the date and time and what to watch in movie,show_date_time - suggest movie
+show me the date and time and tell me what to watch,show_date_time - suggest movie
+show me the date and time and suggest a movie,show_date_time - suggest movie
+show me the date and time and what to watch in movie,show_date_time - suggest movie
+show me the date and time and tell me what to watch,show_date_time - suggest movie
+show me the date and time and suggest a movie,show_date_time - suggest movie
+show me the date and time and recommend me a movie,show_date_time - suggest movie
+show me the date and time and can you tell me the weather  ,show_date_time - check weather
+show me the date and time and how is the weather today  ,show_date_time - check weather
+show me the date and time and is it hot today  ,show_date_time - check weather
+show me the date and time and is it cold today  ,show_date_time - check weather
+show me the date and time and is it going to rain today  ,show_date_time - check weather
+show me the date and time and will it rain today  ,show_date_time - check weather
+show me the date and time and how is the humidity today  ,show_date_time - check weather
+show me the date and time and show me last note,show_date_time - last_saved_note
+show me the date and time and last note,show_date_time - last_saved_note
+show me the date and time and last saved note,show_date_time - last_saved_note
+show me the date and time and show me all notes,show_date_time - show_all_notes
+show me the date and time and preview all notes,show_date_time - show_all_notes
+date and time and what to watch in movie,show_date_time - suggest movie
+date and time and tell me what to watch,show_date_time - suggest movie
+date and time and suggest a movie,show_date_time - suggest movie
+date and time and what to watch in movie,show_date_time - suggest movie
+date and time and tell me what to watch,show_date_time - suggest movie
+date and time and suggest a movie,show_date_time - suggest movie
+date and time and recommend me a movie,show_date_time - suggest movie
+date and time and can you tell me the weather  ,show_date_time - check weather
+date and time and how is the weather today  ,show_date_time - check weather
+date and time and is it hot today  ,show_date_time - check weather
+date and time and is it cold today  ,show_date_time - check weather
+date and time and is it going to rain today  ,show_date_time - check weather
+date and time and will it rain today  ,show_date_time - check weather
+date and time and how is the humidity today  ,show_date_time - check weather
+date and time and show me last note,show_date_time - last_saved_note
+date and time and last note,show_date_time - last_saved_note
+date and time and last saved note,show_date_time - last_saved_note
+date and time and show me all notes,show_date_time - show_all_notes
+date and time and preview all notes,show_date_time - show_all_notes
+what is the date and time and what to watch in movie,show_date_time - suggest movie
+what is the date and time and tell me what to watch,show_date_time - suggest movie
+what is the date and time and suggest a movie,show_date_time - suggest movie
+what is the date and time and what to watch in movie,show_date_time - suggest movie
+what is the date and time and tell me what to watch,show_date_time - suggest movie
+what is the date and time and suggest a movie,show_date_time - suggest movie
+what is the date and time and recommend me a movie,show_date_time - suggest movie
+what is the date and time and can you tell me the weather  ,show_date_time - check weather
+what is the date and time and how is the weather today  ,show_date_time - check weather
+what is the date and time and is it hot today  ,show_date_time - check weather
+what is the date and time and is it cold today  ,show_date_time - check weather
+what is the date and time and is it going to rain today  ,show_date_time - check weather
+what is the date and time and will it rain today  ,show_date_time - check weather
+what is the date and time and how is the humidity today  ,show_date_time - check weather
+what is the date and time and show me last note,show_date_time - last_saved_note
+what is the date and time and last note,show_date_time - last_saved_note
+what is the date and time and last saved note,show_date_time - last_saved_note
+what is the date and time and show me all notes,show_date_time - show_all_notes
+what is the date and time and preview all notes,show_date_time - show_all_notes
+what to watch in movie and can you tell me the weather  ,suggest movie - check weather
+what to watch in movie and how is the weather today  ,suggest movie - check weather
+what to watch in movie and is it hot today  ,suggest movie - check weather
+what to watch in movie and is it cold today  ,suggest movie - check weather
+what to watch in movie and is it going to rain today  ,suggest movie - check weather
+what to watch in movie and will it rain today  ,suggest movie - check weather
+what to watch in movie and how is the humidity today  ,suggest movie - check weather
+what to watch in movie and show me last note,suggest movie - last_saved_note
+what to watch in movie and last note,suggest movie - last_saved_note
+what to watch in movie and last saved note,suggest movie - last_saved_note
+what to watch in movie and show me all notes,suggest movie - show_all_notes
+what to watch in movie and preview all notes,suggest movie - show_all_notes
+tell me what to watch and can you tell me the weather  ,suggest movie - check weather
+tell me what to watch and how is the weather today  ,suggest movie - check weather
+tell me what to watch and is it hot today  ,suggest movie - check weather
+tell me what to watch and is it cold today  ,suggest movie - check weather
+tell me what to watch and is it going to rain today  ,suggest movie - check weather
+tell me what to watch and will it rain today  ,suggest movie - check weather
+tell me what to watch and how is the humidity today  ,suggest movie - check weather
+tell me what to watch and show me last note,suggest movie - last_saved_note
+tell me what to watch and last note,suggest movie - last_saved_note
+tell me what to watch and last saved note,suggest movie - last_saved_note
+tell me what to watch and show me all notes,suggest movie - show_all_notes
+tell me what to watch and preview all notes,suggest movie - show_all_notes
+suggest a movie and can you tell me the weather  ,suggest movie - check weather
+suggest a movie and how is the weather today  ,suggest movie - check weather
+suggest a movie and is it hot today  ,suggest movie - check weather
+suggest a movie and is it cold today  ,suggest movie - check weather
+suggest a movie and is it going to rain today  ,suggest movie - check weather
+suggest a movie and will it rain today  ,suggest movie - check weather
+suggest a movie and how is the humidity today  ,suggest movie - check weather
+suggest a movie and show me last note,suggest movie - last_saved_note
+suggest a movie and last note,suggest movie - last_saved_note
+suggest a movie and last saved note,suggest movie - last_saved_note
+suggest a movie and show me all notes,suggest movie - show_all_notes
+suggest a movie and preview all notes,suggest movie - show_all_notes
+what to watch in movie and can you tell me the weather  ,suggest movie - check weather
+what to watch in movie and how is the weather today  ,suggest movie - check weather
+what to watch in movie and is it hot today  ,suggest movie - check weather
+what to watch in movie and is it cold today  ,suggest movie - check weather
+what to watch in movie and is it going to rain today  ,suggest movie - check weather
+what to watch in movie and will it rain today  ,suggest movie - check weather
+what to watch in movie and how is the humidity today  ,suggest movie - check weather
+what to watch in movie and show me last note,suggest movie - last_saved_note
+what to watch in movie and last note,suggest movie - last_saved_note
+what to watch in movie and last saved note,suggest movie - last_saved_note
+what to watch in movie and show me all notes,suggest movie - show_all_notes
+what to watch in movie and preview all notes,suggest movie - show_all_notes
+tell me what to watch and can you tell me the weather  ,suggest movie - check weather
+tell me what to watch and how is the weather today  ,suggest movie - check weather
+tell me what to watch and is it hot today  ,suggest movie - check weather
+tell me what to watch and is it cold today  ,suggest movie - check weather
+tell me what to watch and is it going to rain today  ,suggest movie - check weather
+tell me what to watch and will it rain today  ,suggest movie - check weather
+tell me what to watch and how is the humidity today  ,suggest movie - check weather
+tell me what to watch and show me last note,suggest movie - last_saved_note
+tell me what to watch and last note,suggest movie - last_saved_note
+tell me what to watch and last saved note,suggest movie - last_saved_note
+tell me what to watch and show me all notes,suggest movie - show_all_notes
+tell me what to watch and preview all notes,suggest movie - show_all_notes
+suggest a movie and can you tell me the weather  ,suggest movie - check weather
+suggest a movie and how is the weather today  ,suggest movie - check weather
+suggest a movie and is it hot today  ,suggest movie - check weather
+suggest a movie and is it cold today  ,suggest movie - check weather
+suggest a movie and is it going to rain today  ,suggest movie - check weather
+suggest a movie and will it rain today  ,suggest movie - check weather
+suggest a movie and how is the humidity today  ,suggest movie - check weather
+suggest a movie and show me last note,suggest movie - last_saved_note
+suggest a movie and last note,suggest movie - last_saved_note
+suggest a movie and last saved note,suggest movie - last_saved_note
+suggest a movie and show me all notes,suggest movie - show_all_notes
+suggest a movie and preview all notes,suggest movie - show_all_notes
+recommend me a movie and can you tell me the weather  ,suggest movie - check weather
+recommend me a movie and how is the weather today  ,suggest movie - check weather
+recommend me a movie and is it hot today  ,suggest movie - check weather
+recommend me a movie and is it cold today  ,suggest movie - check weather
+recommend me a movie and is it going to rain today  ,suggest movie - check weather
+recommend me a movie and will it rain today  ,suggest movie - check weather
+recommend me a movie and how is the humidity today  ,suggest movie - check weather
+recommend me a movie and show me last note,suggest movie - last_saved_note
+recommend me a movie and last note,suggest movie - last_saved_note
+recommend me a movie and last saved note,suggest movie - last_saved_note
+recommend me a movie and show me all notes,suggest movie - show_all_notes
+recommend me a movie and preview all notes,suggest movie - show_all_notes
+can you tell me the weather   and show me last note,check weather - last_saved_note
+can you tell me the weather   and last note,check weather - last_saved_note
+can you tell me the weather   and last saved note,check weather - last_saved_note
+can you tell me the weather   and show me all notes,check weather - show_all_notes
+can you tell me the weather   and preview all notes,check weather - show_all_notes
+how is the weather today   and show me last note,check weather - last_saved_note
+how is the weather today   and last note,check weather - last_saved_note
+how is the weather today   and last saved note,check weather - last_saved_note
+how is the weather today   and show me all notes,check weather - show_all_notes
+how is the weather today   and preview all notes,check weather - show_all_notes
+is it hot today   and show me last note,check weather - last_saved_note
+is it hot today   and last note,check weather - last_saved_note
+is it hot today   and last saved note,check weather - last_saved_note
+is it hot today   and show me all notes,check weather - show_all_notes
+is it hot today   and preview all notes,check weather - show_all_notes
+is it cold today   and show me last note,check weather - last_saved_note
+is it cold today   and last note,check weather - last_saved_note
+is it cold today   and last saved note,check weather - last_saved_note
+is it cold today   and show me all notes,check weather - show_all_notes
+is it cold today   and preview all notes,check weather - show_all_notes
+is it going to rain today   and show me last note,check weather - last_saved_note
+is it going to rain today   and last note,check weather - last_saved_note
+is it going to rain today   and last saved note,check weather - last_saved_note
+is it going to rain today   and show me all notes,check weather - show_all_notes
+is it going to rain today   and preview all notes,check weather - show_all_notes
+will it rain today   and show me last note,check weather - last_saved_note
+will it rain today   and last note,check weather - last_saved_note
+will it rain today   and last saved note,check weather - last_saved_note
+will it rain today   and show me all notes,check weather - show_all_notes
+will it rain today   and preview all notes,check weather - show_all_notes
+how is the humidity today   and show me last note,check weather - last_saved_note
+how is the humidity today   and last note,check weather - last_saved_note
+how is the humidity today   and last saved note,check weather - last_saved_note
+how is the humidity today   and show me all notes,check weather - show_all_notes
+how is the humidity today   and preview all notes,check weather - show_all_notes
+show me last note and show me all notes,last_saved_note - show_all_notes
+show me last note and preview all notes,last_saved_note - show_all_notes
+last note and show me all notes,last_saved_note - show_all_notes
+last note and preview all notes,last_saved_note - show_all_notes
+last saved note and show me all notes,last_saved_note - show_all_notes
+last saved note and preview all notes,last_saved_note - show_all_notes
+most recent alarm,next_alarm
+show me next alarm,next_alarm
+what is the next alarm,next_alarm
+view next alarm,next_alarm
+most coming alarm,next_alarm
+where am i,location
+would you please open map,location
+launch map,location
+what time is it now,show_time
+can i ask you what is the time,show_time
+what is the time please,show_time
+can you please tell me what is the time,show_time
+do you have the time,show_time
+do you know what time it is,show_time
+can you tell me what time it is please,show_time
+what day is ,show_date
+what day is it  ,show_date
+whats the date ,show_date
+what day is it ,show_date
+what is date ,show_date
+show me the date and time,show_date_time
+date and time,show_date_time
+what is the date and time,show_date_time
+what to watch in movie,suggest movie
+tell me what to watch,suggest movie
+suggest a movie,suggest movie
+what to watch in movie,suggest movie
+tell me what to watch,suggest movie
+suggest a movie,suggest movie
+recommend me a movie,suggest movie
+can you tell me the weather  ,check weather
+how is the weather today  ,check weather
+is it hot today  ,check weather
+is it cold today  ,check weather
+is it going to rain today  ,check weather
+will it rain today  ,check weather
+how is the humidity today  ,check weather
+show me last note,last_saved_note
+last note,last_saved_note
+last saved note,last_saved_note
+show me all notes,show_all_notes
+preview all notes,show_all_notes
+,

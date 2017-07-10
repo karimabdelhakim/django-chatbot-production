@@ -15,8 +15,10 @@ from stat_parser.parser import Parser, display_tree
 # from nltk.tokenize import word_tokenize
 
 import nltk
-from extract_intents import extract_intents
-
+from extract_intents import extract_intents, crop_intents
+from intentsModule import getAnswer
+from WeatherOrMovies import getResults
+from json import loads
 
 # _____Fact Questions Libraries_____
 import re
@@ -139,14 +141,19 @@ def parse(sentence):
         print("BeautifulSoup succeeded")
 
         answer = soup_super_page.findAll('Abstract')[0].text
+        Image = soup_super_page.findAll('Image')[0].text
         if (answer == ""):
             answer = soup_super_page.findAll('Text')[0].text
-        return True, answer
+
+        return True, answer, Image
     except Exception as exception:
         print ("error2", exception)
         print (type(exception).__name__)
         print (exception.__class__.__name__)
-        return False, ""  # -----------------------General DataSet   &   Movies Lines----------------#
+        return False, ""
+
+
+        # -----------------------General DataSet   &   Movies Lines----------------#
 
 
 def talk_to_lina(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
@@ -239,6 +246,97 @@ def talk_to_lina(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, 
                 break
 
 
+def talk_to_lina_primary(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
+    i = 0
+    sentences = []
+
+    # enter your test sentence
+    test_set = (test_set_sentence, "")
+
+    # 3ashan yzabt el indexes
+    sentences.append(" No you.")
+    sentences.append(" No you.")
+
+    try:
+        ##--------------to use------------------#
+        f = open(tfidf_vectorizer_pikle_path, 'rb')
+        tfidf_vectorizer = pickle.load(f)
+        f.close()
+
+        f = open(tfidf_matrix_train_pikle_path, 'rb')
+        tfidf_matrix_train = pickle.load(f)
+        f.close()
+        # ----------------------------------------#
+    except:
+        # ---------------to train------------------#
+        start = timeit.default_timer()
+
+        # enter jabberwakky sentence
+        with open(csv_file_path, "r") as sentences_file:
+            reader = csv.reader(sentences_file, delimiter=',')
+            # reader.next()
+            # reader.next()
+            for row in reader:
+                # if i==stop_at_sentence:
+                #    break
+                sentences.append(row[0])
+                i += 1
+
+        tfidf_vectorizer = TfidfVectorizer()
+        tfidf_matrix_train = tfidf_vectorizer.fit_transform(sentences)  # finds the tfidf score with normalization
+        # tfidf_matrix_test =tfidf_vectorizer.transform(test_set)
+        stop = timeit.default_timer()
+        print ("training time took was : ")
+        print stop - start
+
+        f = open(tfidf_vectorizer_pikle_path, 'wb')
+        pickle.dump(tfidf_vectorizer, f)
+        f.close()
+
+        f = open(tfidf_matrix_train_pikle_path, 'wb')
+        pickle.dump(tfidf_matrix_train, f)
+        f.close()
+        # -----------------------------------------#
+
+    tfidf_matrix_test = tfidf_vectorizer.transform(test_set)
+
+    cosine = cosine_similarity(tfidf_matrix_test, tfidf_matrix_train)
+
+    cosine = np.delete(cosine, 0)
+    max = cosine.max()
+    response_index = 0
+    if (max > 0.9):
+        new_max = max - 0.01
+        list = np.where(cosine > new_max)
+        print ("number of responses with 0.01 from max = " + str(list[0].size))
+        response_index = random.choice(list[0])
+
+    else:
+        print ("not sure")
+        print ("max is = " + str(max))
+        response_index = np.where(cosine == max)[0][0] + 2  # no offset at all +3
+        return "null", "null",
+
+    j = 0
+
+    with open(csv_file_path, "r") as sentences_file:
+        reader = csv.reader(sentences_file, delimiter=',')
+        for row in reader:
+            j += 1  # we begin with 1 not 0 &    j is initialized by 0
+            if j == response_index:
+
+                if delimeter in row[1]:
+                    # get newest suggestion
+                    answer_row = row[1].split(delimeter)
+                    row[1] = answer_row[1]
+
+                else:  # add new suggestion
+                    note = "just return old original suggestion"
+
+                return row[1], response_index,
+                break
+
+
 # -------------------------------------------------------------------------#
 
 # -----------------------Edit Module (RealTime Learn)----------------------#
@@ -295,20 +393,34 @@ def edit_real_time(new_sentence, dataset_number, LineID):
 
 
 def callBot(var, option):
-    result = extract_intents(var)
+    Lina_all_path_primary = get_relative_path("Lina primary.csv")
+    tfidf_vectorizer_april_path_primary = get_relative_path("tfidf_vectorizer_april_primary.pickle")
+    tfidf_matrix_train_april_path_primary = get_relative_path("tfidf_matrix_train_april_primary.pickle")
 
+    response_primary, line_id_primary = talk_to_lina_primary(var, Lina_all_path_primary,
+                                                             tfidf_vectorizer_april_path_primary,
+                                                             tfidf_matrix_train_april_path_primary)
+
+    if (response_primary != "null"):
+        return "message", (response_primary.capitalize().strip(), option, None)
+
+    result1 = extract_intents(var)
+    result2 = getAnswer(crop_intents(var))
     response = ""
-    if (result[1] == "normal sentence"):  # not anwar intent
+
+    print "anwar:" + str(result1)
+    print "youssef:" + str(result2)
+    if (result1[0][0] == "message" and result2[0] == "message"):  # not intent
         fact_question = parse(var)  # [False]
         line_id = None
         if (fact_question[0]):
             print "Fact Question"
             # print fact_question[1].encode('utf-8')
-            response = fact_question[1].encode('utf-8').split('.')[0] + '.'
+            response = fact_question[1].encode('utf-8').split('.')[0] + '.' + fact_question[2]
             print
 
         else:
-            print "action : " + result[0]
+            print "action : "
             print ("ENTER CHARACTER:")
             print (
                 "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11")
@@ -380,7 +492,65 @@ def callBot(var, option):
             print ("Lina :  " + response)
 
         return "message", (response.capitalize().strip(), option, line_id)
-    return result  # anwar intent
+
+    intents_result_no_movies_weather = result1 + map(lambda x: (x,), result2)  # intents
+    intents_full_result = list()
+
+    for current_intent in intents_result_no_movies_weather:
+        type = current_intent[0]
+        if type == "message":
+            continue
+        elif type == "suggest movie":
+            type = random.choice(["top rated", "popular"])
+            result = loads(getResults("movie", type))
+            resultString = "{0}({1}): {2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                                                             result["Overview"],
+                                                             result["poster"], "Trailer Link")
+            intents_full_result.append(('display_message', resultString))
+        elif type == "show_movie":
+            resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
+            if (resultStr != "No Movie Found"):
+                result = loads(resultStr)
+                resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                                                                       result["Overview"], result["poster"],
+                                                                       result["Trailer Link"], result['genres'])
+                intents_full_result.append(('display_message', resultString))
+            else:
+                intents_full_result.append(('display_message', resultStr))
+        elif type == "show_trailer":
+            resultStr = getResults("movie", current_intent[1].split("('")[1].split("')")[0])
+            if (resultStr != "No Movie Found"):
+                result = loads(resultStr)
+                resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                                                                       result["Overview"], result["poster"],
+                                                                       result["Trailer Link"], result['genres'])
+                intents_full_result.append(('display_message', resultString))
+                intents_full_result.append(('play_trailer', "trailer_link(" + result["Trailer Link"] + ")"))
+            else:
+                intents_full_result.append(('display_message', resultStr))
+
+        elif type == "recommend_movie":
+            result = loads(getResults("movie", "genre:" + current_intent[1].split("('")[1].split("')")[0]))
+            resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
+                                                                   result["Overview"], result["poster"],
+                                                                   result["Trailer Link"], result['genres'])
+            intents_full_result.append(('display_message', resultString))
+
+        elif type == "show_weather":
+            resultStr = getResults("weather", current_intent[1].split("('")[1].split("')")[0])
+            if (resultStr != "No Matching City Was Found"):
+                result = loads(getResults("weather", type))
+                resultString = "{0} with temperature of {1} Celsius and Humidity of {2}".format(
+                    result['Weather Condition'],
+                    result['Temperature In Celcius'],
+                    result['Humidity'])
+                intents_full_result.append(('display_message', resultString))
+            else:
+                intents_full_result.append(('display_message', resultStr))
+
+        else:
+            intents_full_result.append(current_intent)
+    return 'intent', intents_full_result
 
 
 def get_relative_path(filename):

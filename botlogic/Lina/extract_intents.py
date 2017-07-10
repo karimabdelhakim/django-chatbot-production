@@ -21,6 +21,17 @@ show_note_regex = r"([Ss]how\s+(.*)\s+[Nn]ote)"
 edit_note_regex = r"([Ee]dit\s+[Nn]ote\s+(\[.*\])\s+(\[.*\]))"
 delete_note_regex = r"([Dd]elete\s+[Nn]ote\s+(\[.*\]))"
 
+show_movie_regex = r"([Ss]how\s+(.*)\s+[Mm]ovie\s*([Ii]nfo)?)"
+show_trailer_regex = r"([Ss]how\s+(.*)\s+[Tt]railer)"
+recommend_movie_regex = r"(([Rr]ecommend|[Ss]uggest)\s+(.*)\s+[Mm]ovie)"
+
+show_weather_regex = r"([Ss]how\s+(.*)\s+[Ww]eather)"
+
+regex_list = [set_alarm_regex, call_number_regex, view_contact_regex, call_contact_regex, send_email_regex,
+              set_event_regex, message_contact_regex, message_number_regex, start_timer_regex,
+              save_note_regex, edit_note_regex, delete_note_regex, show_movie_regex,
+              show_trailer_regex, show_weather_regex]
+
 
 ###
 
@@ -172,8 +183,8 @@ def get_send_email(text):
 
         for match in matches:
             output.append(("send_email", "email(\'" + trim(match[1]) + "\')", \
-                           "subject(\'" + match[2][1:-1] + "\')", \
-                           "body(\'" + match[3][1:-1] + "\')"))
+                           "subject(\'" + trim(match[2][1:-1]) + "\')", \
+                           "body(\'" + trim(match[3][1:-1]) + "\')"))
 
     return output
 
@@ -198,9 +209,9 @@ def get_set_event(text):
             output.append(("set_event", \
                            "start_time(\'" + match[1] + "\')", \
                            "end_time(\'" + default(match[2], 0) + "\')", \
-                           "title(\'" + match[3][1:-1] + "\')", \
+                           "title(\'" + trim(match[3][1:-1]) + "\')", \
                            "text(\'" + match[4][1:-1] + "\')", \
-                           "location(\'" + match[5][1:-1] + "\')"))
+                           "location(\'" + trim(match[5][1:-1]) + "\')"))
     another_regex = r"([Ss]et\s+[Ee]vent\s+(\d{0,2}:\d{0,2})\s*(\d{0,2}:\d{0,2})?\s+(\[[\w ,_]*\])\s*(\[[\w ,_]*\])?\s*(\[[\w ,_]*\])?)"
     match = re.search(another_regex, text)
     if match:
@@ -209,9 +220,9 @@ def get_set_event(text):
             output.append(("set_event", \
                            "start_time(\'" + match[1] + "\')", \
                            "end_time(\'" + default(match[2], 0) + "\')", \
-                           "title(\'" + match[3][1:-1] + "\')", \
+                           "title(\'" + trim(match[3][1:-1]) + "\')", \
                            "text(\'" + match[4][1:-1] + "\')", \
-                           "location(\'" + match[5][1:-1] + "\')"))
+                           "location(\'" + trim(match[5][1:-1]) + "\')"))
 
     return output
 
@@ -300,7 +311,7 @@ def get_save_note(text):
     if match:
         matches = re.findall(save_note_regex, text)
         for match in matches:
-            output.append(("save_note", "title(\'" + match[1][1:-1] + "\')", \
+            output.append(("save_note", "title(\'" + trim(match[1][1:-1]) + "\')", \
                            "text(\'" + match[2][1:-1] + "\')"))
 
     return output
@@ -331,7 +342,7 @@ def get_show_note(text):
     if match:
         matches = re.findall(another_regex, text)
         for match in matches:
-            output.append(("show_note", "title(\'" + match[1][1:-1] + "\')"))
+            output.append(("show_note", "title(\'" + trim(match[1][1:-1]) + "\')"))
 
     return output
 
@@ -349,7 +360,7 @@ def get_edit_note(text):
     if match:
         matches = re.findall(edit_note_regex, text)
         for match in matches:
-            output.append(("edit_note", "title(\'" + match[1][1:-1] + "\')", \
+            output.append(("edit_note", "title(\'" + trim(match[1][1:-1]) + "\')", \
                            "text(\'" + match[2][1:-1] + "\')"))
 
     return output
@@ -368,18 +379,15 @@ def get_delete_note(text):
     if match:
         matches = re.findall(delete_note_regex, text)
         for match in matches:
-            output.append(("delete_note", "title(\'" + match[1][1:-1] + "\')"))
+            output.append(("delete_note", "title(\'" + trim(match[1][1:-1]) + "\')"))
 
     another_regex = show_note_regex = r"([Dd]elete\s+(.*)\s+[Nn]ote)"
     match = re.search(another_regex, text)
     if match:
         matches = re.findall(another_regex, text)
         for match in matches:
-            output.append(("delete_note", "title(\'" + match[1] + "\')"))
+            output.append(("delete_note", "title(\'" + trim(match[1]) + "\')"))
     return output
-
-
-# print get_delete_note(text), "\n\n\n"
 
 
 ########################## new_send ##########################
@@ -433,9 +441,149 @@ def get_new_send(text):
     return output
 
 
+########################## show_movie ##########################
+text = """
+        show       Me   The incredibles movie
+        show me movie
+        please, show    me The amazing spiderman movie
+        show movie [The dark knight ] info[]
+        show Me      movie [Wag the DOG   ][]
+        """
+
+
+def get_show_movie(text):
+    output = []
+    match = re.search(show_movie_regex, text)
+    if match:
+        matches = re.findall(show_movie_regex, text)
+        for match in matches:
+            movie_name = trim(match[1])
+            if movie_name.split()[0].lower() == "me":
+                movie_name = trim(' '.join(movie_name.split()[1:]))
+            if len(movie_name) != 0:
+                output.append(("show_movie", \
+                               "movie_name(\'" + movie_name + "\')"))
+
+    another_regex = r"(([Ss]how|[Ss]how\s+[Mm]e)\s+[Mm]ovie\s+(\[[\w ,_]*\])\s*([Ii]nfo)?)"
+    match = re.search(another_regex, text)
+    if match:
+        matches = re.findall(another_regex, text)
+        for match in matches:
+            output.append(("show_movie", \
+                           "movie_name(\'" + trim(match[2][1:-1]) + "\')"))
+    return output
+
+
+# print get_show_movie(text), "\n\n"
+
+########################## show_trailer ##########################
+text = """
+        show The dark knight trailer
+        show Split         trailer 
+        please, show    me The amazing spiderman trailer
+        show trailer [The dark knight ]
+        show me trailer [How i met you mother]
+        show Me      trailer [Wag the DOG   ][]
+        """
+
+
+def get_show_trailer(text):
+    output = []
+    match = re.search(show_trailer_regex, text)
+    if match:
+        matches = re.findall(show_trailer_regex, text)
+        for match in matches:
+            movie_name = trim(match[1])
+            if movie_name.split()[0].lower() == "me":
+                movie_name = trim(' '.join(movie_name.split()[1:]))
+            if len(movie_name) != 0:
+                output.append(("show_trailer", \
+                               "movie_name(\'" + movie_name + "\')"))
+
+    another_regex = r"(([Ss]how|[Ss]how\s+[Mm]e)\s+[Tt]railer\s+(\[[\w ,_]*\]))"
+    match = re.search(another_regex, text)
+    if match:
+        matches = re.findall(another_regex, text)
+        for match in matches:
+            output.append(("show_trailer", \
+                           "movie_name(\'" + trim(match[2][1:-1]) + "\')"))
+    return output
+
+
+# print get_show_trailer(text), "\n\n"
+
+########################## recommend_movie ##########################
+# text = """
+#         recommend an action movie
+#         recommend [comedy] movie
+#         suggest (a romance) movie
+#         Suggest a drama movie
+#         """
+
+
+def handle_marks(text):
+    marks = "(\"'[{"
+    try:
+        if text[0] in marks:
+            return handle_marks(text[1:-1])
+        else:
+            return text
+    except IndexError:
+        return text
+
+
+def get_recommend_movie(text):
+    output = []
+    categories = ["action", "adventure", "animation", "comedy", "crime", "drama", "horror",
+                  "mystery", "romance"]
+    match = re.search(recommend_movie_regex, text)
+    try:
+        if match:
+            matches = re.findall(recommend_movie_regex, text)
+            for match in matches:
+                category = handle_marks(trim(match[2]))
+                if category.split()[0].lower() == "a" or category.split()[0].lower() == "an":
+                    category = trim(' '.join(category.split()[1:]))
+                if len(category) != 0 and category in categories:
+                    output.append(("recommend_movie", \
+                                   "category(\'" + category + "\')"))
+    finally:
+        return output
+
+
+# print get_recommend_movie(text), "\n\n"
+
+
+########################## show_weather ##########################
+def get_show_weather(text):
+    output = []
+    match = re.search(show_weather_regex, text)
+    if match:
+        matches = re.findall(show_weather_regex, text)
+        for match in matches:
+            city_name = trim(match[1])
+            if city_name.split()[0].lower() == "me":
+                city_name = trim(' '.join(city_name.split()[1:]))
+            if len(city_name) != 0:
+                output.append(("show_weather", \
+                               "city_name(\'" + city_name + "\')"))
+
+    another_regex = r"(([Ss]how|[Ss]how\s+[Mm]e)\s+([Ww]eather)\s+(\[[\w ,_]*\]))"
+    match = re.search(another_regex, text)
+    if match:
+        matches = re.findall(another_regex, text)
+        for match in matches:
+            output.append(("show_weather", \
+                           "city_name(\'" + trim(match[3][1:-1]) + "\')"))
+    return output
+
+
 #######################################################################
 
+# text = "show cairo weather"
+# print get_show_weather(text), "\n\n"
 
+#######################################################################
 
 
 def extract_intents(text):
@@ -461,11 +609,24 @@ def extract_intents(text):
     whole_outputs.append(get_show_note(text))
     whole_outputs.append(get_delete_note(text))
 
+    whole_outputs.append(get_show_movie(text))
+    whole_outputs.append(get_show_trailer(text))
+    whole_outputs.append(get_recommend_movie(text))
+
+    whole_outputs.append(get_show_weather(text))
+
     if len(tuple(sum(whole_outputs, []))) == 0:
-        return ("", "normal sentence")
+        return [("message",)]
 
-    return ("intent", sum(whole_outputs, []))
+    return sum(whole_outputs, [])
 
+
+def crop_intents(text):
+    for regex in regex_list:
+        match = re.compile(regex).search(text)
+        if match is not None:
+            text = re.sub(match.group(), '', text)
+    return text
 
 # text = """
 #       set alarm morning alarm 10:30 and please, call 011 27 55 70 54. View contact Mo7amed 3zzat call
@@ -480,11 +641,3 @@ def extract_intents(text):
 #       """
 #
 # print extract_intents(text)
-
-
-
-
-
-
-
-
