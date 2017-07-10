@@ -533,7 +533,9 @@ def callBot(var, option):
             result = loads(getResults("movie", "genre:" + current_intent[1].split("('")[1].split("')")[0]))
             resultString = "{0}({1}):\n{5}\n{2}\n{3}\n{4},".format(result['Original Title'], result["rating"],
                                                                    result["Overview"], result["poster"],
-                                                                   result["Trailer Link"], result['genres'])
+                                                                   result["Trailer Link"],
+                                                                   map(lambda genre: genre.encode('ascii', 'replace'),
+                                                                       result['genres']))
             intents_full_result.append(('display_message', resultString))
 
         elif type == "show_weather":
