@@ -336,6 +336,94 @@ def talk_to_lina_primary(test_set_sentence, csv_file_path, tfidf_vectorizer_pikl
                 return row[1], response_index,
                 break
 
+def talk_to_lina_smart(test_set_sentence, csv_file_path, tfidf_vectorizer_pikle_path, tfidf_matrix_train_pikle_path):
+    i = 0
+    sentences = []
+
+    # enter your test sentence
+    test_set = (test_set_sentence, "")
+
+    # 3ashan yzabt el indexes
+    sentences.append(" No you.")
+    sentences.append(" No you.")
+
+    try:
+        ##--------------to use------------------#
+        f = open(tfidf_vectorizer_pikle_path, 'rb')
+        tfidf_vectorizer = pickle.load(f)
+        f.close()
+
+        f = open(tfidf_matrix_train_pikle_path, 'rb')
+        tfidf_matrix_train = pickle.load(f)
+        f.close()
+        # ----------------------------------------#
+    except:
+        # ---------------to train------------------#
+        start = timeit.default_timer()
+
+        # enter jabberwakky sentence
+        with open(csv_file_path, "r") as sentences_file:
+            reader = csv.reader(sentences_file, delimiter=',')
+            # reader.next()
+            # reader.next()
+            for row in reader:
+                # if i==stop_at_sentence:
+                #    break
+                sentences.append(row[0])
+                i += 1
+
+        tfidf_vectorizer = TfidfVectorizer()
+        tfidf_matrix_train = tfidf_vectorizer.fit_transform(sentences)  # finds the tfidf score with normalization
+        # tfidf_matrix_test =tfidf_vectorizer.transform(test_set)
+        stop = timeit.default_timer()
+        print ("training time took was : ")
+        print stop - start
+
+        f = open(tfidf_vectorizer_pikle_path, 'wb')
+        pickle.dump(tfidf_vectorizer, f)
+        f.close()
+
+        f = open(tfidf_matrix_train_pikle_path, 'wb')
+        pickle.dump(tfidf_matrix_train, f)
+        f.close()
+        # -----------------------------------------#
+
+    tfidf_matrix_test = tfidf_vectorizer.transform(test_set)
+
+    cosine = cosine_similarity(tfidf_matrix_test, tfidf_matrix_train)
+
+    cosine = np.delete(cosine, 0)
+    max = cosine.max()
+    response_index = 0
+    if (max > 0.7):
+        new_max = max - 0.01
+        list = np.where(cosine > new_max)
+        print ("number of responses with 0.01 from max = " + str(list[0].size))
+        response_index = random.choice(list[0])
+
+    else:
+        print ("not sure")
+        print ("max is = " + str(max))
+        response_index = np.where(cosine == max)[0][0] + 2  # no offset at all +3
+
+    j = 0
+
+    with open(csv_file_path, "r") as sentences_file:
+        reader = csv.reader(sentences_file, delimiter=',')
+        for row in reader:
+            j += 1  # we begin with 1 not 0 &    j is initialized by 0
+            if j == response_index+1:
+
+                if delimeter in row[0]:
+                    # get newest suggestion
+                    answer_row = row[0].split(delimeter)
+                    row[0] = answer_row[0]
+
+                else:  # add new suggestion
+                    note = "just return old original suggestion"
+
+                return row[0], response_index+1,
+                break
 
 # -------------------------------------------------------------------------#
 
@@ -423,7 +511,7 @@ def callBot(var, option):
             print "action : "
             print ("ENTER CHARACTER:")
             print (
-                "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11")
+                "general:0   action:1   animation:2   comedy:3   crime:4  drama:5   fantasy:6    filmnoir:7   horror:8  romance:9   scifi:10   war:11 franco:12")
             # option = int(raw_input("enter option as number: ")   )
             if option == 0:
                 Lina_all_path = os.path.join(dir, "Lina_all.csv")
@@ -487,6 +575,15 @@ def callBot(var, option):
                                                  get_relative_path('tfidf_vectorizer_war.pickle'),
                                                  get_relative_path('tfidf_matrix_train_war.pickle'))
 
+            elif option == 12:
+                response, line_id = talk_to_lina(var, get_relative_path("Francko_all.csv"),
+                                                 get_relative_path('tfidf_vectorizer_Francko_all.pickle'),
+                                                 get_relative_path('tfidf_matrix_train_Francko_all.pickle'))
+
+            elif option == 13:
+                response, line_id = talk_to_lina_smart(var, get_relative_path("Francko_all_smart.csv"),
+                                                 get_relative_path('tfidf_vectorizer_Francko_all_smart.pickle'),
+                                                 get_relative_path('tfidf_matrix_train_Francko_all_smart.pickle'))
             print
 
             print ("Lina :  " + response)
@@ -569,3 +666,10 @@ def get_relative_path(filename):
     conversations_dir = os.path.join(dir, "Conversations")
     relative_path = os.path.join(conversations_dir, filename)
     return relative_path
+
+
+
+#to test offline
+# while 1:
+#     chat_sentance  = raw_input("Talk to Lina :")
+#     callBot(chat_sentance , 13)
