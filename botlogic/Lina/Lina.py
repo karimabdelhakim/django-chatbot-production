@@ -33,6 +33,9 @@ import pandas
 import sklearn
 import string
 
+# ______Data Extraction_______
+import data_extraction
+
 # -----------------------------------$$ Global Variables $$-------------------------------------#
 delimeter = "_+^$#*#$^+_"
 dir = os.path.dirname(__file__)
@@ -489,8 +492,18 @@ def callBot(var, option):
                                                              tfidf_vectorizer_april_path_primary,
                                                              tfidf_matrix_train_april_path_primary)
 
+
+    
     if (response_primary != "null"):
         return "message", (response_primary.capitalize().strip(), option, None)
+
+    #free the variables of parsing
+    data_extraction.tree_output_str =""
+    #data_extraction.tree_output =[]
+    respone_data_exctraction =  data_extraction.data_extraction( var )
+    if (respone_data_exctraction != ""):
+           return "message", (respone_data_exctraction.capitalize().strip(), option, None)
+
 
     result1 = extract_intents(var)
     result2 = getAnswer(crop_intents(var))
@@ -672,4 +685,5 @@ def get_relative_path(filename):
 #to test offline
 # while 1:
 #     chat_sentance  = raw_input("Talk to Lina :")
-#     callBot(chat_sentance , 13)
+#     print callBot(chat_sentance , 0)
+#     print
