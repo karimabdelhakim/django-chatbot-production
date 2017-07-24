@@ -1,4 +1,4 @@
-from stat_parser import Parser, display_tree
+from stat_parser.parser import Parser, display_tree
 import nltk
 import re
 #import nltk.classify.util
